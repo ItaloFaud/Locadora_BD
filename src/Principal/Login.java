@@ -5,6 +5,11 @@
  */
 package Principal;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hoope
@@ -16,6 +21,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setLocationRelativeTo(this);
+        setTitle("Video Locadora - Ítalo Faud");
+        
     }
 
     /**
@@ -27,21 +35,140 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        JtfUser = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        BtnEntrar = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        JpfSenha = new javax.swing.JPasswordField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/locadora.jpg"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLabel2.setText("Senha");
+
+        jLabel3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLabel3.setText("Usuário");
+
+        JtfUser.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/botaoSair.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        BtnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/botaoEntrar.png"))); // NOI18N
+        BtnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEntrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JtfUser)
+                            .addComponent(JpfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(BtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(208, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(JtfUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(JpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(261, Short.MAX_VALUE)
+                    .addComponent(BtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(41, 41, 41)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        String login = JtfUser.getText();
+        String senha = JpfSenha.getText();
+        
+        if(login.equalsIgnoreCase("") || senha.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Nenhum campo pode estar vazio","Vídeo Locadora",
+                    JOptionPane.WARNING_MESSAGE);
+            JtfUser.setText("");
+            JtfUser.setText("");
+        }else{
+            if(sql.Logar(login, senha) == true){
+                new Thread(){
+                    public void run(){
+                        for (int i = 0; i < 101; i++) {
+                            jProgressBar1.setValue(i);
+                            try{
+                                Thread.sleep(15);
+                            }catch (Exception ex){
+                                ex.getMessage();
+                            }
+                        }
+                       new Menu().setVisible(true);
+                       dispose();
+                    }
+                }.start();
+            }else{
+              JOptionPane.showMessageDialog(null,"Usuário e/ou Senha incorretos","Vídeo Locadora",
+                    JOptionPane.ERROR_MESSAGE);
+              JtfUser.setText("");
+              JpfSenha.setText("");
+            }
+        }
+    }//GEN-LAST:event_BtnEntrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here
+        dispose();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +206,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnEntrar;
+    private javax.swing.JPasswordField JpfSenha;
+    private javax.swing.JTextField JtfUser;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
 }
