@@ -49,26 +49,26 @@ public class Menu extends javax.swing.JFrame {
         Filme = new javax.swing.JMenuItem();
         Funcionario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        Funcionario1 = new javax.swing.JMenuItem();
         Categoria1 = new javax.swing.JMenuItem();
         Classificacao1 = new javax.swing.JMenuItem();
         Cliente1 = new javax.swing.JMenuItem();
         DVD1 = new javax.swing.JMenuItem();
         Filme1 = new javax.swing.JMenuItem();
+        Funcionario1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        Funcionario2 = new javax.swing.JMenuItem();
         Categoria2 = new javax.swing.JMenuItem();
         Classificacao2 = new javax.swing.JMenuItem();
         Cliente2 = new javax.swing.JMenuItem();
         DVD2 = new javax.swing.JMenuItem();
         Filme2 = new javax.swing.JMenuItem();
+        Funcionario2 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        Funcionario3 = new javax.swing.JMenuItem();
         Categoria3 = new javax.swing.JMenuItem();
         Classificacao3 = new javax.swing.JMenuItem();
         Cliente3 = new javax.swing.JMenuItem();
         DVD3 = new javax.swing.JMenuItem();
         Filme3 = new javax.swing.JMenuItem();
+        Funcionario3 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -79,6 +79,7 @@ public class Menu extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/dvd-mount2.png"))); // NOI18N
         jButton1.setText("Locação");
+        jButton1.setPreferredSize(new java.awt.Dimension(153, 49));
 
         jButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD3.png"))); // NOI18N
@@ -87,6 +88,7 @@ public class Menu extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/sair1.png"))); // NOI18N
         jButton3.setText("Sair");
+        jButton3.setPreferredSize(new java.awt.Dimension(153, 49));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -144,7 +146,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(Categoria);
 
-        Classificacao.setText("Classificacao");
+        Classificacao.setText("Classificação");
         Classificacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClassificacaoActionPerformed(evt);
@@ -176,7 +178,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(Filme);
 
-        Funcionario.setText("Funcionario");
+        Funcionario.setText("Funcionário");
         Funcionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FuncionarioActionPerformed(evt);
@@ -188,14 +190,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Consultar");
 
-        Funcionario1.setText("Funcionario");
-        Funcionario1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Funcionario1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(Funcionario1);
-
         Categoria1.setText("Categoria");
         Categoria1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +198,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(Categoria1);
 
-        Classificacao1.setText("Classificacao");
+        Classificacao1.setText("Classificação");
         Classificacao1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Classificacao1ActionPerformed(evt);
@@ -236,17 +230,17 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(Filme1);
 
+        Funcionario1.setText("Funcionário");
+        Funcionario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Funcionario1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(Funcionario1);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Excluir");
-
-        Funcionario2.setText("Funcionario");
-        Funcionario2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Funcionario2ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(Funcionario2);
 
         Categoria2.setText("Categoria");
         Categoria2.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +250,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(Categoria2);
 
-        Classificacao2.setText("Classificacao");
+        Classificacao2.setText("Classificação");
         Classificacao2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Classificacao2ActionPerformed(evt);
@@ -288,17 +282,17 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(Filme2);
 
+        Funcionario2.setText("Funcionário");
+        Funcionario2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Funcionario2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(Funcionario2);
+
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Alterar");
-
-        Funcionario3.setText("Funcionario");
-        Funcionario3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Funcionario3ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(Funcionario3);
 
         Categoria3.setText("Categoria");
         Categoria3.addActionListener(new java.awt.event.ActionListener() {
@@ -308,7 +302,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu5.add(Categoria3);
 
-        Classificacao3.setText("Classificacao");
+        Classificacao3.setText("Classificação");
         Classificacao3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Classificacao3ActionPerformed(evt);
@@ -340,6 +334,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu5.add(Filme3);
 
+        Funcionario3.setText("Funcionário");
+        Funcionario3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Funcionario3ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(Funcionario3);
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -350,11 +352,11 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(191, 191, 191)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(115, 115, 115))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -397,10 +399,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FuncionarioActionPerformed
 
-    private void Funcionario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Funcionario1ActionPerformed
-
     private void Categoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Categoria1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Categoria1ActionPerformed
@@ -421,9 +419,9 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Filme1ActionPerformed
 
-    private void Funcionario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario2ActionPerformed
+    private void Funcionario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Funcionario2ActionPerformed
+    }//GEN-LAST:event_Funcionario1ActionPerformed
 
     private void Categoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Categoria2ActionPerformed
         // TODO add your handling code here:
@@ -445,9 +443,9 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Filme2ActionPerformed
 
-    private void Funcionario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario3ActionPerformed
+    private void Funcionario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Funcionario3ActionPerformed
+    }//GEN-LAST:event_Funcionario2ActionPerformed
 
     private void Categoria3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Categoria3ActionPerformed
         // TODO add your handling code here:
@@ -468,6 +466,10 @@ public class Menu extends javax.swing.JFrame {
     private void Filme3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Filme3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Filme3ActionPerformed
+
+    private void Funcionario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Funcionario3ActionPerformed
 
     /**
      * @param args the command line arguments
