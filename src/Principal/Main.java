@@ -5,7 +5,9 @@
  */
 package Principal;
 
-import Visao.Cadastrar.CadastrarCliente;
+import Locacao.ControleLocacao;
+import Visao.Consultar.ConsultarCategoria;
+import Visao.Consultar.ConsultarFilme;
 
 
 
@@ -15,6 +17,6 @@ import Visao.Cadastrar.CadastrarCliente;
  */
 public class Main {
     public static void main(String[] args){
-        new CadastrarCliente().setVisible(true);
+        new ControleLocacao().setVisible(true);
     }
 }

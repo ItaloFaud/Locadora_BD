@@ -49,6 +49,7 @@ public class Menu extends javax.swing.JFrame {
         Filme = new javax.swing.JMenuItem();
         Funcionario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         Categoria1 = new javax.swing.JMenuItem();
         Classificacao1 = new javax.swing.JMenuItem();
         Cliente1 = new javax.swing.JMenuItem();
@@ -189,6 +190,9 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Consultar");
+
+        jMenuItem3.setText("Aluguel");
+        jMenu2.add(jMenuItem3);
 
         Categoria1.setText("Categoria");
         Categoria1.addActionListener(new java.awt.event.ActionListener() {
@@ -545,6 +549,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

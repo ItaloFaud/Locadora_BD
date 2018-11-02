@@ -14,7 +14,7 @@ public class Aluguel {
     private int cod_dvd;
     private int cod_cliente;
     private String data_aluguel;
-    private String horatio;
+    private String horario;
     private String data_devolucao;
 
     public int getCod() {
@@ -49,12 +49,12 @@ public class Aluguel {
         this.data_aluguel = data_aluguel;
     }
 
-    public String getHoratio() {
-        return horatio;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setHoratio(String horatio) {
-        this.horatio = horatio;
+    public void setHorario(String horatio) {
+        this.horario = horatio;
     }
 
     public String getData_devolucao() {
