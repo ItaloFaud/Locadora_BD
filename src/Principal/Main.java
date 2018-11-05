@@ -5,9 +5,8 @@
  */
 package Principal;
 
-import Locacao.ControleLocacao;
-import Visao.Consultar.ConsultarCategoria;
-import Visao.Consultar.ConsultarFilme;
+import Visao.Cadastrar.CadastrarFuncionario;
+
 
 
 
@@ -17,6 +16,6 @@ import Visao.Consultar.ConsultarFilme;
  */
 public class Main {
     public static void main(String[] args){
-        new ControleLocacao().setVisible(true);
+        new CadastrarFuncionario().setVisible(true);
     }
 }

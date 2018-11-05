@@ -5,7 +5,12 @@
  */
 package Visao.Cadastrar;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Funcionario;
 import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +26,7 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         setTitle("Vídeo Locadora");
         setResizable(false);
         setLocationRelativeTo(this);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         
     }
 
@@ -222,6 +228,24 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        String login = JtfLogin.getText();
+        String senha = JpfSenha.getText();
+        String nome = JtfNome.getText();
+        if(nome.equalsIgnoreCase("") && senha.equalsIgnoreCase("") && login.equalsIgnoreCase("")){
+        JOptionPane.showMessageDialog(null,"");    
+        } else{
+        Funcionario f = new Funcionario();
+        f.setNome(nome);
+        f.setLogin(login);
+        f.setSenha(senha);
+        String result = sql.Cadastro(f);
+        JOptionPane.showMessageDialog(null,result);
+        new CadastrarFuncionario().setVisible(true);
+        dispose();
+        }
+        
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
