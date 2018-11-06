@@ -26,7 +26,7 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         setTitle("Vídeo Locadora");
         setResizable(false);
         setLocationRelativeTo(this);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);
         
     }
 
@@ -234,7 +234,7 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         String senha = JpfSenha.getText();
         String nome = JtfNome.getText();
         if(nome.equalsIgnoreCase("") && senha.equalsIgnoreCase("") && login.equalsIgnoreCase("")){
-        JOptionPane.showMessageDialog(null,"");    
+        JOptionPane.showMessageDialog(null,"Campos vazios");    
         } else{
         Funcionario f = new Funcionario();
         f.setNome(nome);
@@ -245,6 +245,7 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         new CadastrarFuncionario().setVisible(true);
         dispose();
         }
+        Conexao.FecharConexao(con);
         
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
@@ -258,7 +259,6 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 

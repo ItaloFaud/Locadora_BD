@@ -5,7 +5,9 @@
  */
 package Principal;
 
+import Visao.Alterar.AlterarFuncionario;
 import Visao.Cadastrar.CadastrarFuncionario;
+import Visao.Consultar.ConsultarFuncionario;
 
 
 
@@ -16,6 +18,6 @@ import Visao.Cadastrar.CadastrarFuncionario;
  */
 public class Main {
     public static void main(String[] args){
-        new CadastrarFuncionario().setVisible(true);
+        new ConsultarFuncionario().setVisible(true);
     }
 }

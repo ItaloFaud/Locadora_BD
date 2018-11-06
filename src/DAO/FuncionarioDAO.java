@@ -5,6 +5,8 @@ import java.sql.*;
 
 import Modelo.Funcionario;
 import Visao.Cadastrar.CadastrarFuncionario;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,7 +42,7 @@ public class FuncionarioDAO extends ExecuteSQL{
     
     public String Cadastro(Funcionario f){
        //String consulta = "select login,senha from funcionario where login = '"+login+"' and senha = '"+senha+"' ";
-       String consulta = "insert into funcionario values (0,?,?,?)";
+       
         try {
             
             String consulta2 = "select login,senha from funcionario "
@@ -52,6 +54,7 @@ public class FuncionarioDAO extends ExecuteSQL{
                 return "Não cadastrado, funcionario com informações iguais";
                 
             }else{
+                String consulta = "insert into funcionario values (0,?,?,?)";
                 PreparedStatement ps = getCon().prepareStatement(consulta);
                 
                 ps.setString(1, f.getNome());
@@ -78,7 +81,148 @@ public class FuncionarioDAO extends ExecuteSQL{
         
         
         
-    }    
+    }
+
+    public String Conferir(Funcionario f){
+        try {
+            String consulta2 = "select nome,login,senha from funcionario "
+                    +"where idfuncionario = '"+f.getCod()+"'";
+            PreparedStatement ps2 = getCon().prepareStatement(consulta2);
+            ResultSet rs2 = ps2.executeQuery();
+            if(rs2 != null){
+                while(rs2.next()){
+                    //Funcionario fun = new Funcionario();
+                    f.setNome(rs2.getString(1));
+                    f.setLogin(rs2.getString(2));
+                    f.setSenha(rs2.getString(3));
+                    //finalResult = true;
+                    return "Funcionário encontrado!";
+                }
+            }else{
+                return "Funcionário inexixtente!";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+    
+    public String Alterar(Funcionario f){
+        try {
+            String up = "update funcionario set nome = '"+f.getNome()+"', login = '"+f.getLogin()+"',"
+                    + " senha = '"+f.getSenha()+"' where idfuncionario = '"+f.getCod()+"'";
+            PreparedStatement ps = getCon().prepareStatement(up);
+            
+            if (ps.executeUpdate() > 0) {
+                return "Alterado";
+            }else{
+                return "Não encontrado";
+            }
+            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return null;
+        
+    }
+    
+    public List<Funcionario> Consulta() {
+        String consulta = "select idfuncionario,nome,login,senha from funcionario";
+            List<Funcionario> lista = new ArrayList<>();
+        try {
+            
+            
+            PreparedStatement ps = getCon().prepareStatement(consulta);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs != null){
+                while (rs.next()) {                    
+                    Funcionario f = new Funcionario();
+                    f.setCod(rs.getInt(1));
+                    f.setNome(rs.getString(2));
+                    f.setLogin(rs.getString(3));
+                    f.setSenha(rs.getString(4));
+                    lista.add(f);
+                }return lista;
+            }else{
+                return null;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        
+        
+    }
+    
+    public List<Funcionario> Consulta_Nome(String nome) {
+        String consulta = "select idfuncionario,nome,login,senha from funcionario where nome Like '%"+nome+"%'";
+            List<Funcionario> lista = new ArrayList<>();
+        try {
+            
+            
+            PreparedStatement ps = getCon().prepareStatement(consulta);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs != null){
+                while (rs.next()) {                    
+                    Funcionario f = new Funcionario();
+                    f.setCod(rs.getInt(1));
+                    f.setNome(rs.getString(2));
+                    f.setLogin(rs.getString(3));
+                    f.setSenha(rs.getString(4));
+                    lista.add(f);
+                }return lista;
+            }else{
+                return null;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        
+        
+    }
+    
+    public List<Funcionario> Consulta_Cod(int cod) {
+        String consulta = "select idfuncionario,nome,login,senha from funcionario where idfuncionario Like '%"+cod+"%'";
+            List<Funcionario> lista = new ArrayList<>();
+        try {
+            
+            
+            PreparedStatement ps = getCon().prepareStatement(consulta);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs != null){
+                while (rs.next()) {                    
+                    Funcionario f = new Funcionario();
+                    f.setCod(rs.getInt(1));
+                    f.setNome(rs.getString(2));
+                    f.setLogin(rs.getString(3));
+                    f.setSenha(rs.getString(4));
+                    lista.add(f);
+                }return lista;
+            }else{
+                return null;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+        
+        
+    }
+    
+    
+        
     
     
     

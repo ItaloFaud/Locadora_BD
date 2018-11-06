@@ -5,8 +5,13 @@
  */
 package Visao.Alterar;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Funcionario;
 import Visao.Cadastrar.*;
 import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,11 +52,11 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         JpfSenha = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        BtnCadastrar = new javax.swing.JButton();
+        BtnAlterar = new javax.swing.JButton();
         BtnLimpar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
-        BtnCadastrar2 = new javax.swing.JButton();
-        JtfNome4 = new javax.swing.JTextField();
+        BtnOK = new javax.swing.JButton();
+        JtfCod = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,11 +159,11 @@ public class AlterarFuncionario extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        BtnCadastrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar.setText("Alterar");
-        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        BtnAlterar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnAlterar.setText("Alterar");
+        BtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrarActionPerformed(evt);
+                BtnAlterarActionPerformed(evt);
             }
         });
 
@@ -186,7 +191,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(BtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
-                .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -197,20 +202,20 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(BtnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(BtnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
 
-        BtnCadastrar2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar2.setText("OK");
-        BtnCadastrar2.addActionListener(new java.awt.event.ActionListener() {
+        BtnOK.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnOK.setText("OK");
+        BtnOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrar2ActionPerformed(evt);
+                BtnOKActionPerformed(evt);
             }
         });
 
-        JtfNome4.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCod.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel14.setText("Digite o código:");
@@ -226,9 +231,9 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtfNome4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtnCadastrar2)
+                .addComponent(BtnOK)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -238,8 +243,8 @@ public class AlterarFuncionario extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(JtfNome4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCadastrar2))
+                    .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnOK))
                 .addGap(37, 37, 37)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,9 +255,33 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+    private void BtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrarActionPerformed
+        String senha = JpfSenha.getText();
+        String login = JtfLogin.getText();
+        int id = Integer.parseInt(JtfID.getText());
+        String nome = JtfNome.getText();
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        if(senha.equalsIgnoreCase("") && login.equalsIgnoreCase("") && JtfID.getText().equalsIgnoreCase("") 
+           && nome.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Campos vazios");
+        }else{
+            Funcionario f = new Funcionario();
+            f.setLogin(login);
+            f.setNome(nome);
+            f.setCod(id);
+            f.setSenha(senha);
+            JOptionPane.showMessageDialog(null, sql.Alterar(f));
+            JtfCod.setText("");
+            JpfSenha.setText("");
+            JtfLogin.setText("");
+            JtfNome.setText("");
+            
+            
+        }
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_BtnAlterarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
         // TODO add your handling code here:
@@ -268,9 +297,26 @@ public class AlterarFuncionario extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    private void BtnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrar2ActionPerformed
+    private void BtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOKActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrar2ActionPerformed
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        int cod = Integer.parseInt(JtfCod.getText());
+        if (JtfCod.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Campo vaizo!");
+        }else{
+            Funcionario f = new Funcionario();
+            f.setCod(cod);
+           JOptionPane.showMessageDialog(null,sql.Conferir(f));
+            JtfID.setText(""+f.getCod());
+            JtfLogin.setText(f.getLogin());
+            JtfNome.setText(f.getNome());
+            JpfSenha.setText(f.getSenha());
+             
+            
+        }
+        
+    }//GEN-LAST:event_BtnOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,15 +365,15 @@ public class AlterarFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCadastrar;
-    private javax.swing.JButton BtnCadastrar2;
+    private javax.swing.JButton BtnAlterar;
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnLimpar;
+    private javax.swing.JButton BtnOK;
     private javax.swing.JPasswordField JpfSenha;
+    private javax.swing.JTextField JtfCod;
     private javax.swing.JTextField JtfID;
     private javax.swing.JTextField JtfLogin;
     private javax.swing.JTextField JtfNome;
-    private javax.swing.JTextField JtfNome4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;

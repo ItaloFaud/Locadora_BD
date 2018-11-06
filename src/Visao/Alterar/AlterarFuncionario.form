@@ -30,9 +30,9 @@
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="JtfNome4" min="-2" pref="141" max="-2" attributes="0"/>
+              <Component id="JtfCod" min="-2" pref="141" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="BtnCadastrar2" min="-2" max="-2" attributes="0"/>
+              <Component id="BtnOK" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -44,8 +44,8 @@
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JtfNome4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnCadastrar2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JtfCod" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnOK" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -255,7 +255,7 @@
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="BtnLimpar" min="-2" pref="111" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                  <Component id="BtnCadastrar" min="-2" pref="111" max="-2" attributes="0"/>
+                  <Component id="BtnAlterar" min="-2" pref="111" max="-2" attributes="0"/>
                   <EmptySpace pref="90" max="32767" attributes="0"/>
                   <Component id="BtnCancelar" min="-2" pref="111" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -268,7 +268,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="BtnLimpar" alignment="3" pref="36" max="32767" attributes="0"/>
-                      <Component id="BtnCadastrar" alignment="3" pref="36" max="32767" attributes="0"/>
+                      <Component id="BtnAlterar" alignment="3" pref="36" max="32767" attributes="0"/>
                       <Component id="BtnCancelar" alignment="3" pref="36" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -277,7 +277,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="BtnCadastrar">
+        <Component class="javax.swing.JButton" name="BtnAlterar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Copperplate Gothic Light" size="12" style="0"/>
@@ -285,7 +285,7 @@
             <Property name="text" type="java.lang.String" value="Alterar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCadastrarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAlterarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="BtnLimpar">
@@ -312,7 +312,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="BtnCadastrar2">
+    <Component class="javax.swing.JButton" name="BtnOK">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Copperplate Gothic Light" size="12" style="0"/>
@@ -320,10 +320,10 @@
         <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCadastrar2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnOKActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="JtfNome4">
+    <Component class="javax.swing.JTextField" name="JtfCod">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Copperplate Gothic Light" size="14" style="0"/>

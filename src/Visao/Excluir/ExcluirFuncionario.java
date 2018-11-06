@@ -75,6 +75,11 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         jLabel3.setText("Nome:");
 
         JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtfNomeActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
@@ -173,6 +178,10 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void JtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JtfNomeActionPerformed
 
     /**
      * @param args the command line arguments

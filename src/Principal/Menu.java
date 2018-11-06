@@ -5,6 +5,13 @@
  */
 package Principal;
 
+import Visao.Cadastrar.CadastrarCategoria;
+import Visao.Cadastrar.CadastrarClassificacao;
+import Visao.Cadastrar.CadastrarCliente;
+import Visao.Cadastrar.CadastrarDVD;
+import Visao.Cadastrar.CadastrarFilme;
+import Visao.Cadastrar.CadastrarFuncionario;
+
 /**
  *
  * @author Hoope
@@ -34,7 +41,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BtnSair = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -49,7 +56,7 @@ public class Menu extends javax.swing.JFrame {
         Filme = new javax.swing.JMenuItem();
         Funcionario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        Aluguel1 = new javax.swing.JMenuItem();
         Categoria1 = new javax.swing.JMenuItem();
         Classificacao1 = new javax.swing.JMenuItem();
         Cliente1 = new javax.swing.JMenuItem();
@@ -86,10 +93,15 @@ public class Menu extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD3.png"))); // NOI18N
         jButton2.setText("Devolução");
 
-        jButton3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/sair1.png"))); // NOI18N
-        jButton3.setText("Sair");
-        jButton3.setPreferredSize(new java.awt.Dimension(153, 49));
+        BtnSair.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        BtnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/sair1.png"))); // NOI18N
+        BtnSair.setText("Sair");
+        BtnSair.setPreferredSize(new java.awt.Dimension(153, 49));
+        BtnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSairActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -191,8 +203,8 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Consultar");
 
-        jMenuItem3.setText("Aluguel");
-        jMenu2.add(jMenuItem3);
+        Aluguel1.setText("Aluguel");
+        jMenu2.add(Aluguel1);
 
         Categoria1.setText("Categoria");
         Categoria1.addActionListener(new java.awt.event.ActionListener() {
@@ -360,7 +372,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(191, 191, 191)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(115, 115, 115))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -371,7 +383,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -381,26 +393,32 @@ public class Menu extends javax.swing.JFrame {
 
     private void CategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriaActionPerformed
         // TODO add your handling code here:
+        new CadastrarCategoria().setVisible(true);
     }//GEN-LAST:event_CategoriaActionPerformed
 
     private void ClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClassificacaoActionPerformed
         // TODO add your handling code here:
+        new CadastrarClassificacao().setVisible(true);
     }//GEN-LAST:event_ClassificacaoActionPerformed
 
     private void ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteActionPerformed
         // TODO add your handling code here:
+        new CadastrarCliente().setVisible(true);
     }//GEN-LAST:event_ClienteActionPerformed
 
     private void DVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DVDActionPerformed
         // TODO add your handling code here:
+        new CadastrarDVD().setVisible(true);
     }//GEN-LAST:event_DVDActionPerformed
 
     private void FilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilmeActionPerformed
         // TODO add your handling code here:
+        new CadastrarFilme().setVisible(true);
     }//GEN-LAST:event_FilmeActionPerformed
 
     private void FuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FuncionarioActionPerformed
         // TODO add your handling code here:
+        new CadastrarFuncionario().setVisible(true);
     }//GEN-LAST:event_FuncionarioActionPerformed
 
     private void Categoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Categoria1ActionPerformed
@@ -475,6 +493,11 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Funcionario3ActionPerformed
 
+    private void BtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSairActionPerformed
+        // TODO add your handling code here:
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }//GEN-LAST:event_BtnSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -511,6 +534,8 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Aluguel1;
+    private javax.swing.JButton BtnSair;
     private javax.swing.JMenuItem Categoria;
     private javax.swing.JMenuItem Categoria1;
     private javax.swing.JMenuItem Categoria2;
@@ -537,7 +562,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem Funcionario3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -549,7 +573,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
