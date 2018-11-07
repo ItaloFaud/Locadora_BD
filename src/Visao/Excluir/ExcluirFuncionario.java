@@ -5,8 +5,15 @@
  */
 package Visao.Excluir;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Funcionario;
 import Visao.Cadastrar.*;
 import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +29,22 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         setTitle("Vídeo Locadora");
         setResizable(false);
         setLocationRelativeTo(this);
+        AtualizaCombo();
         
+    }
+    
+    private void AtualizaCombo(){
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        List<Funcionario> lista = new ArrayList<>();
+        lista = sql.ListarComboFuncionario();
+        //jComboBox1.addItem("");
+        
+        for(Funcionario f : lista){
+            jComboBox1.addItem(f.getNome());
+        }
+        
+        Conexao.FecharConexao(con);
     }
 
     /**
@@ -41,7 +63,7 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         JtfNome = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
-        BtnCadastrar = new javax.swing.JButton();
+        BtnExcluir = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,6 +96,7 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel3.setText("Nome:");
 
+        JtfNome.setEditable(false);
         JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         JtfNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +106,11 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -110,11 +138,11 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        BtnCadastrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar.setText("Excluir");
-        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        BtnExcluir.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnExcluir.setText("Excluir");
+        BtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrarActionPerformed(evt);
+                BtnExcluirActionPerformed(evt);
             }
         });
 
@@ -132,7 +160,7 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
@@ -142,7 +170,7 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(BtnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
@@ -169,19 +197,62 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+    private void BtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrarActionPerformed
+        String codd = JtfNome.getText();
+        String nome = jComboBox1.getSelectedItem().toString();
+        
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        Funcionario f = new Funcionario();
+        
+        if(nome.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Nenhum nome selecionado", "Vídeo Locadora", JOptionPane.ERROR_MESSAGE);
+        }else{
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir \n("+codd+")"
+                    + " ("+nome+")?","Vídeo Locadora",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            
+            if (confirm == 0){
+                int cod = Integer.parseInt(codd);
+                f.setCod(cod);
+                f.setNome(nome);
+                sql.ExcluirFuncionario(f);
+                Conexao.FecharConexao(con);
+                dispose();
+            }
+        }
+        
+        
+    }//GEN-LAST:event_BtnExcluirActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
+        //new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     private void JtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JtfNomeActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        
+        List<Funcionario> lista = new ArrayList<>();
+        String nome = jComboBox1.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoFuncionario(nome);
+        
+        for(Funcionario f : lista){
+            int cod = f.getCod();
+            JtfNome.setText(""+cod);
+        }
+        
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,8 +325,8 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCadastrar;
     private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnExcluir;
     private javax.swing.JTextField JtfNome;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;

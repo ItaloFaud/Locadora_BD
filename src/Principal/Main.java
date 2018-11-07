@@ -8,6 +8,8 @@ package Principal;
 import Visao.Alterar.AlterarFuncionario;
 import Visao.Cadastrar.CadastrarFuncionario;
 import Visao.Consultar.ConsultarFuncionario;
+import Visao.Excluir.ExcluirCategoria;
+import Visao.Excluir.ExcluirFuncionario;
 
 
 
@@ -18,6 +20,6 @@ import Visao.Consultar.ConsultarFuncionario;
  */
 public class Main {
     public static void main(String[] args){
-        new ConsultarFuncionario().setVisible(true);
+        new ExcluirFuncionario().setVisible(true);
     }
 }

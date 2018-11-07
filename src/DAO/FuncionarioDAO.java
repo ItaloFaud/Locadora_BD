@@ -221,11 +221,80 @@ public class FuncionarioDAO extends ExecuteSQL{
         
     }
     
-    
+    public List<Funcionario> ListarComboFuncionario(){
+        try {
+            String sql = "select nome from funcionario order by nome";
+            List<Funcionario> lista = new ArrayList<>();
+            
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs != null) {
+                while(rs.next()){
+                    Funcionario f = new Funcionario();
+                    f.setNome(rs.getString(1));
+                    lista.add(f);
+                    
+                }
+                return lista;
+            }else{
+                return null;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
         
+       
+    }
     
+    public List<Funcionario> ConsultaCodigoFuncionario(String nome){
+        try {
+            String consulta = "select idfuncionario from funcionario where nome = '"+nome+"' ";
+            List<Funcionario> lista = new ArrayList<>();
+            
+            PreparedStatement ps = getCon().prepareStatement(consulta);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs != null){
+                while (rs.next()) {                    
+                    Funcionario f = new Funcionario();
+                    f.setCod(rs.getInt(1));
+                    lista.add(f);
+                    
+                }
+                return lista;
+                
+            }else{
+                return null;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        
+        }
+    }
     
-    
-    
+    public String ExcluirFuncionario(Funcionario f){
+        try {
+            String sql = "delete from funcionario where idfuncionario = ? and nome = ? ";
+            
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ps.setInt(1, f.getCod());
+            ps.setString(2, f.getNome());
+            
+            if(ps.executeUpdate() > 0){
+                return "Excluído com sucesso";
+            }else{
+                return "Erro ao excluir";
+            }     
+        } catch (SQLException ex) {
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+       
+    }
+        
+  
     
 }
