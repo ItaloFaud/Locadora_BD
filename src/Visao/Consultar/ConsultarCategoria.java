@@ -5,6 +5,16 @@
  */
 package Visao.Consultar;
 
+import DAO.CategoriaDAO;
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Categoria;
+import Modelo.Funcionario;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Hoope
@@ -19,6 +29,79 @@ public class ConsultarCategoria extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(this);
         setTitle("Vídeo Locadora");
+        AtualizaTable();
+    }
+    
+    
+     public void AtualizaTable(){
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        
+        List<Categoria> lista = new ArrayList<>();
+        lista = sql.Consulta();
+        DefaultTableModel tbm = (DefaultTableModel) jTable2.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for (Categoria tab : lista) {
+            //Object object = arr[j];
+            tbm.addRow(new String[1]);
+            jTable2.setValueAt(tab.getCodigo(), i, 0);
+            jTable2.setValueAt(tab.getNome(), i, 1);
+           
+            i++;
+            
+            
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    public void AtualizaTable_Nome(String nome){
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        
+        List<Categoria> lista = new ArrayList<>();
+        lista = sql.Consulta_Nome(nome);
+        DefaultTableModel tbm = (DefaultTableModel) jTable2.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for (Categoria tab : lista) {
+            //Object object = arr[j];
+            tbm.addRow(new String[1]);
+            jTable2.setValueAt(tab.getCodigo(), i, 0);
+            jTable2.setValueAt(tab.getNome(), i, 1);
+            i++;
+            
+            
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    public void AtualizaTable_Cod(int cod){
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        
+        List<Categoria> lista = new ArrayList<>();
+        lista = sql.Consulta_Cod(cod);
+        DefaultTableModel tbm = (DefaultTableModel) jTable2.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for (Categoria tab : lista) {
+            //Object object = arr[j];
+            tbm.addRow(new String[1]);
+            jTable2.setValueAt(tab.getCodigo(), i, 0);
+            jTable2.setValueAt(tab.getNome(), i, 1);
+            i++;
+            
+            
+        }
+        
+        Conexao.FecharConexao(con);
     }
 
     /**
@@ -33,12 +116,12 @@ public class ConsultarCategoria extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        JtfNome = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        JtfCod = new javax.swing.JTextField();
+        JbnNome = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        JtfNome1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        BtnCadastrar = new javax.swing.JButton();
+        JtfNome = new javax.swing.JTextField();
+        JbnCod = new javax.swing.JButton();
+        BtnTodos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,22 +139,32 @@ public class ConsultarCategoria extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel2.setText("Pesquisa por código:");
 
-        JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCod.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
+        JbnNome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
+        JbnNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbnNomeActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel3.setText("Pesquisa por nome:");
 
-        JtfNome1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
-
-        BtnCadastrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar.setText("TODOS");
-        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        JbnCod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
+        JbnCod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrarActionPerformed(evt);
+                JbnCodActionPerformed(evt);
+            }
+        });
+
+        BtnTodos.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnTodos.setText("TODOS");
+        BtnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTodosActionPerformed(evt);
             }
         });
 
@@ -86,17 +179,17 @@ public class ConsultarCategoria extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(JbnCod)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(JbnNome)
                         .addGap(46, 46, 46)
-                        .addComponent(BtnCadastrar)))
+                        .addComponent(BtnTodos)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -104,15 +197,15 @@ public class ConsultarCategoria extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JbnNome, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JbnCod, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -121,9 +214,20 @@ public class ConsultarCategoria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+    private void BtnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTodosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrarActionPerformed
+        AtualizaTable();
+    }//GEN-LAST:event_BtnTodosActionPerformed
+
+    private void JbnCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbnCodActionPerformed
+        // TODO add your handling code here:
+        AtualizaTable_Cod(Integer.parseInt(JtfCod.getText()));
+    }//GEN-LAST:event_JbnCodActionPerformed
+
+    private void JbnNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbnNomeActionPerformed
+        // TODO add your handling code here:
+        AtualizaTable_Nome(JtfNome.getText());
+    }//GEN-LAST:event_JbnNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,11 +272,11 @@ public class ConsultarCategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCadastrar;
+    private javax.swing.JButton BtnTodos;
+    private javax.swing.JButton JbnCod;
+    private javax.swing.JButton JbnNome;
+    private javax.swing.JTextField JtfCod;
     private javax.swing.JTextField JtfNome;
-    private javax.swing.JTextField JtfNome1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;

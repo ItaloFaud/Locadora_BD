@@ -27,7 +27,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(this);
         setTitle("Vídeo Locadora");
-       // AtualizaTable();
+        AtualizaTable();
         
     }
 

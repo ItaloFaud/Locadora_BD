@@ -8,6 +8,9 @@ package Principal;
 import Visao.Alterar.AlterarCategoria;
 import Visao.Cadastrar.CadastrarCategoria;
 import Visao.Cadastrar.CadastrarFuncionario;
+import Visao.Consultar.ConsultarCategoria;
+import Visao.Consultar.ConsultarFuncionario;
+import Visao.Excluir.ExcluirCategoria;
 
 
 
@@ -20,6 +23,6 @@ import Visao.Cadastrar.CadastrarFuncionario;
  */
 public class Main {
     public static void main(String[] args){
-        new CadastrarFuncionario().setVisible(true);
+        new Login().setVisible(true);
     }
 }

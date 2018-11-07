@@ -205,6 +205,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
             c.setNome(nome);
            JOptionPane.showMessageDialog(null,sql.Cadastro(c));
            Conexao.FecharConexao(con);
+           JtfNome.setText("");
         }
         
     }//GEN-LAST:event_BtnCadastrarActionPerformed
@@ -217,7 +218,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
+        //new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 

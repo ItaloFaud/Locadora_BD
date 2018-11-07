@@ -67,6 +67,8 @@ public class FuncionarioDAO extends ExecuteSQL{
                 
                 if(ps.executeUpdate() > 0){
                  return "Cadastrado!";
+                }else{
+                    return "Não cadastrado";
                 }
                 
                 
@@ -79,12 +81,12 @@ public class FuncionarioDAO extends ExecuteSQL{
                       
             
         } catch (SQLException ex) {
-            return "Não cadastrado:"+ex.getMessage();
+            return "Não cadastrado: Login já usado por outro funcionário!";//+ex.getMessage();
            // Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         //return null;
-        return null;
+        
         
         
         

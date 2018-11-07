@@ -30,14 +30,14 @@ public class CategoriaDAO extends ExecuteSQL{
        
         try {
             
-            String consulta2 = "SELECT `idcategoria`,`nome` FROM `categoria` WHERE nome = '"+c.getNome()+"'";
-            PreparedStatement ps2 = getCon().prepareStatement(consulta2);
-            ResultSet rs2 = ps2.executeQuery();
-            
-            if(rs2 != null){
-                return "Não cadastrado, categorias com informações iguais";
-                
-            }else{
+//            String consulta2 = "SELECT `idcategoria`,`nome` FROM `categoria` WHERE nome = '"+c.getNome()+"'";
+//            PreparedStatement ps2 = getCon().prepareStatement(consulta2);
+//            ResultSet rs2 = ps2.executeQuery();
+//            
+//            if(rs2 != null){
+//                return "Não cadastrado, categorias com informações iguais";
+//                
+//            }else{
                 String consulta = "insert into categoria values (0,?)";
                 PreparedStatement ps = getCon().prepareStatement(consulta);
                 
@@ -48,7 +48,7 @@ public class CategoriaDAO extends ExecuteSQL{
                 if(ps.executeUpdate() > 0){
                  return "Cadastrado!";
                 }
-            }
+            
             
             //if (login != "" && senha != "" && nome != ""){
             
@@ -56,7 +56,7 @@ public class CategoriaDAO extends ExecuteSQL{
                       
             
         } catch (SQLException ex) {
-            return "Não cadastrada:"+ex.getMessage();
+            return "Não cadastrada: Nome de categoria já em uso";//+ex.getMessage();
            // Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         

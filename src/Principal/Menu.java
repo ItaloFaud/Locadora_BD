@@ -5,12 +5,30 @@
  */
 package Principal;
 
+import Locacao.ConsultarDevolucao;
+import Visao.Alterar.AlterarCategoria;
+import Visao.Alterar.AlterarCliente;
+import Visao.Alterar.AlterarDVD;
+import Visao.Alterar.AlterarFilme;
+import Visao.Alterar.AlterarFuncionario;
 import Visao.Cadastrar.CadastrarCategoria;
 import Visao.Cadastrar.CadastrarClassificacao;
 import Visao.Cadastrar.CadastrarCliente;
 import Visao.Cadastrar.CadastrarDVD;
 import Visao.Cadastrar.CadastrarFilme;
 import Visao.Cadastrar.CadastrarFuncionario;
+import Visao.Consultar.ConsultarCategoria;
+import Visao.Consultar.ConsultarClassificacao;
+import Visao.Consultar.ConsultarCliente;
+import Visao.Consultar.ConsultarDVD;
+import Visao.Consultar.ConsultarFilme;
+import Visao.Consultar.ConsultarFuncionario;
+import Visao.Excluir.ExcluirCategoria;
+import Visao.Excluir.ExcluirClassificacao;
+import Visao.Excluir.ExcluirCliente;
+import Visao.Excluir.ExcluirDVD;
+import Visao.Excluir.ExcluirFilme;
+import Visao.Excluir.ExcluirFuncionario;
 
 /**
  *
@@ -204,6 +222,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.setText("Consultar");
 
         Aluguel1.setText("Aluguel");
+        Aluguel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Aluguel1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(Aluguel1);
 
         Categoria1.setText("Categoria");
@@ -423,80 +446,103 @@ public class Menu extends javax.swing.JFrame {
 
     private void Categoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Categoria1ActionPerformed
         // TODO add your handling code here:
+        new ConsultarCategoria().setVisible(true);
     }//GEN-LAST:event_Categoria1ActionPerformed
 
     private void Classificacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Classificacao1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        new ConsultarClassificacao().setVisible(true);
     }//GEN-LAST:event_Classificacao1ActionPerformed
 
     private void Cliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cliente1ActionPerformed
         // TODO add your handling code here:
+        new ConsultarCliente().setVisible(true);
     }//GEN-LAST:event_Cliente1ActionPerformed
 
     private void DVD1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DVD1ActionPerformed
         // TODO add your handling code here:
+        new ConsultarDVD().setVisible(true);
     }//GEN-LAST:event_DVD1ActionPerformed
 
     private void Filme1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Filme1ActionPerformed
         // TODO add your handling code here:
+        new ConsultarFilme().setVisible(true);
     }//GEN-LAST:event_Filme1ActionPerformed
 
     private void Funcionario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario1ActionPerformed
         // TODO add your handling code here:
+        new ConsultarFuncionario().setVisible(true);
     }//GEN-LAST:event_Funcionario1ActionPerformed
 
     private void Categoria2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Categoria2ActionPerformed
         // TODO add your handling code here:
+        new ExcluirCategoria().setVisible(true);
     }//GEN-LAST:event_Categoria2ActionPerformed
 
     private void Classificacao2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Classificacao2ActionPerformed
         // TODO add your handling code here:
+        new ExcluirClassificacao().setVisible(true);
     }//GEN-LAST:event_Classificacao2ActionPerformed
 
     private void Cliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cliente2ActionPerformed
         // TODO add your handling code here:
+        new ExcluirCliente().setVisible(true);
     }//GEN-LAST:event_Cliente2ActionPerformed
 
     private void DVD2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DVD2ActionPerformed
         // TODO add your handling code here:
+        new ExcluirDVD().setVisible(true);
     }//GEN-LAST:event_DVD2ActionPerformed
 
     private void Filme2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Filme2ActionPerformed
         // TODO add your handling code here:
+        new ExcluirFilme().setVisible(true);
     }//GEN-LAST:event_Filme2ActionPerformed
 
     private void Funcionario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario2ActionPerformed
         // TODO add your handling code here:
+        new ExcluirFuncionario().setVisible(true);
     }//GEN-LAST:event_Funcionario2ActionPerformed
 
     private void Categoria3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Categoria3ActionPerformed
         // TODO add your handling code here:
+        new AlterarCategoria().setVisible(true);
     }//GEN-LAST:event_Categoria3ActionPerformed
 
     private void Classificacao3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Classificacao3ActionPerformed
         // TODO add your handling code here:
+        new AlterarCategoria().setVisible(true);
     }//GEN-LAST:event_Classificacao3ActionPerformed
 
     private void Cliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cliente3ActionPerformed
         // TODO add your handling code here:
+        new AlterarCliente().setVisible(true);
     }//GEN-LAST:event_Cliente3ActionPerformed
 
     private void DVD3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DVD3ActionPerformed
         // TODO add your handling code here:
+        new AlterarDVD().setVisible(true);
     }//GEN-LAST:event_DVD3ActionPerformed
 
     private void Filme3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Filme3ActionPerformed
         // TODO add your handling code here:
+        new AlterarFilme().setVisible(true);
     }//GEN-LAST:event_Filme3ActionPerformed
 
     private void Funcionario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Funcionario3ActionPerformed
         // TODO add your handling code here:
+        new AlterarFuncionario().setVisible(true);
     }//GEN-LAST:event_Funcionario3ActionPerformed
 
     private void BtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSairActionPerformed
         // TODO add your handling code here:
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }//GEN-LAST:event_BtnSairActionPerformed
+
+    private void Aluguel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aluguel1ActionPerformed
+        // TODO add your handling code here:
+        new ConsultarDevolucao().setVisible(true);
+    }//GEN-LAST:event_Aluguel1ActionPerformed
 
     /**
      * @param args the command line arguments
