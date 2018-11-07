@@ -5,7 +5,13 @@
  */
 package Visao.Cadastrar;
 
+import DAO.CategoriaDAO;
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Categoria;
 import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -188,6 +194,19 @@ public class CadastrarCategoria extends javax.swing.JFrame {
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
+        String nome = JtfNome.getText();
+        
+        if (nome.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            CategoriaDAO sql = new CategoriaDAO(con);
+            Categoria c = new Categoria();
+            c.setNome(nome);
+           JOptionPane.showMessageDialog(null,sql.Cadastro(c));
+           Conexao.FecharConexao(con);
+        }
+        
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed

@@ -242,8 +242,10 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         f.setSenha(senha);
         String result = sql.Cadastro(f);
         JOptionPane.showMessageDialog(null,result);
-        new CadastrarFuncionario().setVisible(true);
-        dispose();
+        JtfID.setText("");
+        JpfSenha.setText("");
+        JtfNome.setText("");
+        JtfLogin.setText("");
         }
         Conexao.FecharConexao(con);
         

@@ -5,8 +5,14 @@
  */
 package Visao.Alterar;
 
+import DAO.CategoriaDAO;
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Categoria;
 import Visao.Cadastrar.*;
 import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,7 +53,7 @@ public class AlterarCategoria extends javax.swing.JFrame {
         BtnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         JtfNome1 = new javax.swing.JTextField();
-        BtnCadastrar1 = new javax.swing.JButton();
+        BtnOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,12 +178,17 @@ public class AlterarCategoria extends javax.swing.JFrame {
         jLabel4.setText("Digite o código:");
 
         JtfNome1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-
-        BtnCadastrar1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar1.setText("OK");
-        BtnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
+        JtfNome1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrar1ActionPerformed(evt);
+                JtfNome1ActionPerformed(evt);
+            }
+        });
+
+        BtnOK.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnOK.setText("OK");
+        BtnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnOKActionPerformed(evt);
             }
         });
 
@@ -194,7 +205,7 @@ public class AlterarCategoria extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtnCadastrar1)
+                .addComponent(BtnOK)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -205,7 +216,7 @@ public class AlterarCategoria extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCadastrar1))
+                    .addComponent(BtnOK))
                 .addGap(23, 23, 23)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,6 +229,23 @@ public class AlterarCategoria extends javax.swing.JFrame {
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
+        String nome = JtfNome.getText();
+        int cod = Integer.parseInt(JtfID.getText());
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        
+        if(nome.equalsIgnoreCase("") && JtfID.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Campos vazios","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Categoria c = new Categoria();
+            c.setNome(nome);
+            c.setCodigo(cod);
+           JOptionPane.showMessageDialog(null,sql.Alterar(c),"Video Locadora",JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        JtfNome.setText("");
+        JtfNome1.setText("");
+        JtfID.setText("");
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
@@ -228,13 +256,52 @@ public class AlterarCategoria extends javax.swing.JFrame {
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
+        //new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    private void BtnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrar1ActionPerformed
+    private void BtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOKActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrar1ActionPerformed
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        
+        int cod = Integer.parseInt(JtfNome1.getText());
+        
+        if(JtfNome1.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Categoria c = new Categoria();
+            c.setCodigo(cod);
+            JOptionPane.showMessageDialog(null, sql.Conferir(c));
+            JtfID.setText(""+c.getCodigo());
+            JtfNome.setText(c.getNome());
+            
+        }
+        
+        Conexao.FecharConexao(con);
+        
+    }//GEN-LAST:event_BtnOKActionPerformed
+
+    private void JtfNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfNome1ActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        
+        int cod = Integer.parseInt(JtfNome1.getText());
+        
+        if(JtfNome1.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Categoria c = new Categoria();
+            c.setCodigo(cod);
+            JOptionPane.showMessageDialog(null, sql.Conferir(c));
+            JtfID.setText(""+c.getCodigo());
+            JtfNome.setText(c.getNome());
+            
+        }
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_JtfNome1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,9 +359,9 @@ public class AlterarCategoria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCadastrar;
-    private javax.swing.JButton BtnCadastrar1;
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnLimpar;
+    private javax.swing.JButton BtnOK;
     private javax.swing.JTextField JtfID;
     private javax.swing.JTextField JtfNome;
     private javax.swing.JTextField JtfNome1;

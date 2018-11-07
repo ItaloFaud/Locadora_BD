@@ -315,6 +315,7 @@ public class AlterarFuncionario extends javax.swing.JFrame {
              
             
         }
+        Conexao.FecharConexao(con);
         
     }//GEN-LAST:event_BtnOKActionPerformed
 

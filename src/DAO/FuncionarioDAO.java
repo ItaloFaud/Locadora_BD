@@ -42,18 +42,22 @@ public class FuncionarioDAO extends ExecuteSQL{
     
     public String Cadastro(Funcionario f){
        //String consulta = "select login,senha from funcionario where login = '"+login+"' and senha = '"+senha+"' ";
-       
+       String nome = f.getNome();
+       String login = f.getLogin();
         try {
             
-            String consulta2 = "select login,senha from funcionario "
-                    +"where login = '"+f.getLogin()+"' and senha = '"+f.getSenha()+"'";
-            PreparedStatement ps2 = getCon().prepareStatement(consulta2);
-            ResultSet rs2 = ps2.executeQuery();
-            
-            if(rs2 != null){
-                return "Não cadastrado, funcionario com informações iguais";
+//            String consulta2 = "select login,nome from funcionario where "
+//                    + "login = '"+login+"' and nome = '"+nome+"' ";
+//            PreparedStatement ps2 = getCon().prepareStatement(consulta2);
+//            ResultSet rs2 = ps2.executeQuery();
+//            
+//            if(rs2 != null){
+//                while(rs2.next()){
+//                    return "Não cadastrado, funcionario com informações iguais";
+//                }
+//                
+//            }else{
                 
-            }else{
                 String consulta = "insert into funcionario values (0,?,?,?)";
                 PreparedStatement ps = getCon().prepareStatement(consulta);
                 
@@ -64,7 +68,10 @@ public class FuncionarioDAO extends ExecuteSQL{
                 if(ps.executeUpdate() > 0){
                  return "Cadastrado!";
                 }
-            }
+                
+                
+                
+            
             
             //if (login != "" && senha != "" && nome != ""){
             
