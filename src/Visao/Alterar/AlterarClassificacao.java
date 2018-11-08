@@ -5,8 +5,15 @@
  */
 package Visao.Alterar;
 
+import DAO.CategoriaDAO;
+import DAO.ClassificacaoDAO;
+import DAO.Conexao;
+import Modelo.Categoria;
+import Modelo.Classificacao;
 import Visao.Cadastrar.*;
 import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,13 +48,15 @@ public class AlterarClassificacao extends javax.swing.JFrame {
         JtfID = new javax.swing.JTextField();
         JtfNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        JtfPreco = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        BtnCadastrar = new javax.swing.JButton();
+        BtnAlterar = new javax.swing.JButton();
         BtnLimpar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        JtfNome1 = new javax.swing.JTextField();
-        BtnCadastrar1 = new javax.swing.JButton();
+        JtfCod = new javax.swing.JTextField();
+        BtnOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +96,11 @@ public class AlterarClassificacao extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel2.setText("Codigo:");
 
+        JtfPreco.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        jLabel5.setText("Preco:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -94,15 +108,16 @@ public class AlterarClassificacao extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel3)
-                        .addGap(33, 33, 33)
-                        .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(234, Short.MAX_VALUE))
+                        .addComponent(jLabel5)))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,16 +130,20 @@ public class AlterarClassificacao extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JtfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        BtnCadastrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar.setText("Alterar");
-        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        BtnAlterar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnAlterar.setText("Alterar");
+        BtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrarActionPerformed(evt);
+                BtnAlterarActionPerformed(evt);
             }
         });
 
@@ -152,7 +171,7 @@ public class AlterarClassificacao extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(BtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
-                .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -163,7 +182,7 @@ public class AlterarClassificacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(BtnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(BtnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
@@ -171,13 +190,18 @@ public class AlterarClassificacao extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel4.setText("Digite o código:");
 
-        JtfNome1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-
-        BtnCadastrar1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar1.setText("OK");
-        BtnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
+        JtfCod.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrar1ActionPerformed(evt);
+                JtfCodActionPerformed(evt);
+            }
+        });
+
+        BtnOK.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnOK.setText("OK");
+        BtnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnOKActionPerformed(evt);
             }
         });
 
@@ -192,9 +216,9 @@ public class AlterarClassificacao extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtnCadastrar1)
+                .addComponent(BtnOK)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -204,8 +228,8 @@ public class AlterarClassificacao extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCadastrar1))
+                    .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnOK))
                 .addGap(38, 38, 38)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -216,25 +240,89 @@ public class AlterarClassificacao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+    private void BtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrarActionPerformed
+         String nome = JtfNome.getText();
+        int cod = Integer.parseInt(JtfID.getText());
+        double preco = Double.parseDouble(JtfPreco.getText());
+        
+        Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        
+        if(nome.equalsIgnoreCase("") && JtfID.getText().equalsIgnoreCase("") && JtfPreco.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Campos vazios","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Classificacao c = new Classificacao();
+            c.setNome(nome);
+            c.setCodigo(cod);
+            c.setPreco(preco);
+           JOptionPane.showMessageDialog(null,sql.Alterar(c),"Video Locadora",JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        JtfNome.setText("");
+        JtfCod.setText("");
+        JtfID.setText("");
+        JtfPreco.setText("");
+        
+    }//GEN-LAST:event_BtnAlterarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
         // TODO add your handling code here:
         JtfID.setText("");
         JtfNome.setText("");
+        JtfCod.setText("");
+        JtfPreco.setText("");
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
+        //new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    private void BtnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrar1ActionPerformed
+    private void BtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOKActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrar1ActionPerformed
+          Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        
+        int cod = Integer.parseInt(JtfCod.getText());
+        
+        if(JtfCod.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Classificacao c = new Classificacao();
+            c.setCodigo(cod);
+            JOptionPane.showMessageDialog(null, sql.Conferir(c));
+            JtfID.setText(""+c.getCodigo());
+            JtfNome.setText(c.getNome());
+            JtfPreco.setText(""+c.getPreco());
+            
+        }
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_BtnOKActionPerformed
+
+    private void JtfCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfCodActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        
+        int cod = Integer.parseInt(JtfCod.getText());
+        
+        if(JtfCod.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Classificacao c = new Classificacao();
+            c.setCodigo(cod);
+            JOptionPane.showMessageDialog(null, sql.Conferir(c));
+            JtfID.setText(""+c.getCodigo());
+            JtfNome.setText(c.getNome());
+            JtfPreco.setText(""+c.getPreco());
+            
+        }
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_JtfCodActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,17 +395,19 @@ public class AlterarClassificacao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCadastrar;
-    private javax.swing.JButton BtnCadastrar1;
+    private javax.swing.JButton BtnAlterar;
     private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton BtnLimpar;
+    private javax.swing.JButton BtnOK;
+    private javax.swing.JTextField JtfCod;
     private javax.swing.JTextField JtfID;
     private javax.swing.JTextField JtfNome;
-    private javax.swing.JTextField JtfNome1;
+    private javax.swing.JTextField JtfPreco;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

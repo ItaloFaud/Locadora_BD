@@ -6,11 +6,10 @@
 package Principal;
 
 import Visao.Alterar.AlterarCategoria;
-import Visao.Cadastrar.CadastrarCategoria;
-import Visao.Cadastrar.CadastrarFuncionario;
-import Visao.Consultar.ConsultarCategoria;
-import Visao.Consultar.ConsultarFuncionario;
-import Visao.Excluir.ExcluirCategoria;
+import Visao.Alterar.AlterarClassificacao;
+import Visao.Cadastrar.CadastrarClassificacao;
+import Visao.Excluir.ExcluirClassificacao;
+
 
 
 
@@ -23,6 +22,6 @@ import Visao.Excluir.ExcluirCategoria;
  */
 public class Main {
     public static void main(String[] args){
-        new Login().setVisible(true);
+        new ExcluirClassificacao().setVisible(true);
     }
 }
