@@ -24,7 +24,7 @@ public class FilmeDAO extends ExecuteSQL{
         super(con);
     }
     
-    public String Cadastro(Classificacao c){
+    public String Cadastro(Filme f){
        //String consulta = "select login,senha from funcionario where login = '"+login+"' and senha = '"+senha+"' ";
        
         try {
@@ -37,11 +37,16 @@ public class FilmeDAO extends ExecuteSQL{
 //                return "Não cadastrado, categorias com informações iguais";
 //                
 //            }else{
-                String consulta = "insert into classificacao values (0,?,?)";
+                String consulta = "insert into filme values (0,?,?,?,?,?,?)";
                 PreparedStatement ps = getCon().prepareStatement(consulta);
                 
-                ps.setString(1, c.getNome());
-                ps.setDouble(2, c.getPreco());
+                ps.setString(1, f.getTitulo());
+                ps.setInt(2, f.getAno());
+                ps.setString(3,f.getDuracao());
+                ps.setInt(4,f.getCod_categoria());
+                ps.setInt(5,f.getCod_classificacao());
+                ps.setString(6,f.getCapa());
+                
                 
                 
                 
@@ -56,7 +61,7 @@ public class FilmeDAO extends ExecuteSQL{
                       
             
         } catch (SQLException ex) {
-            return "Não cadastrada: Nome de categoria já em uso";//+ex.getMessage();
+            return "Não cadastrado: Nome de filme já em uso";//+ex.getMessage();
            // Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -67,22 +72,26 @@ public class FilmeDAO extends ExecuteSQL{
         
     }
 
-    public String Conferir(Classificacao c){
+    public String Conferir(Filme c){
         try {
-            String consulta2 = "select nome,preco from classificacao "
-                    +"where idclassificacao = '"+c.getCodigo()+"'";
+            String consulta2 = "select titulo,ano,duracao,idcategoria,idclassificacao,capa from filme "
+                    +"where idfilme = '"+c.getCodigo()+"'";
             PreparedStatement ps2 = getCon().prepareStatement(consulta2);
             ResultSet rs2 = ps2.executeQuery();
             if(rs2 != null){
                 while(rs2.next()){
-                    //Funcionario fun = new Funcionario();
-                    c.setNome(rs2.getString(1));
-                    c.setPreco(rs2.getDouble(2));
+                    
+                    c.setTitulo(rs2.getString(1));
+                    c.setAno(rs2.getInt(2));
+                    c.setDuracao(rs2.getString(3));
+                    c.setCod_categoria(rs2.getInt(4));
+                    c.setCod_classificacao(rs2.getInt(5));
+                    c.setCapa(rs2.getString(6));
                     //finalResult = true;
-                    return "Classificação encontrada!";
+                    return "Filme encontrado!";
                 }
             }else{
-                return "Classificação inexistente!";
+                return "Filme inexistente!";
             }
         } catch (SQLException ex) {
             //Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,10 +100,16 @@ public class FilmeDAO extends ExecuteSQL{
         return null;
     }
     
-    public String Alterar(Classificacao c){
+    public String Alterar(Filme c){
         try {
-            String up = "update classificacao set nome = '"+c.getNome()+"', preco = '"+c.getPreco()+"' where"
-                    + " idclassificacao = '"+c.getCodigo()+"'";
+            String up = "update filme set"
+                    + " titulo = '"+c.getTitulo()+"',"
+                    + " ano = '"+c.getAno()+"',"
+                    + " duracao = '"+c.getDuracao()+"',"
+                    + " idcategoria = '"+c.getCod_categoria()+"',"
+                    + " idclassificacao = '"+c.getCod_classificacao()+"',"
+                    + " capa = '"+c.getCapa()+"',"
+                    + " where idfilme = '"+c.getCodigo()+"'";
             PreparedStatement ps = getCon().prepareStatement(up);
             
             if (ps.executeUpdate() > 0) {
@@ -106,7 +121,7 @@ public class FilmeDAO extends ExecuteSQL{
            
         } catch (SQLException ex) {
             //Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return "Já existe classificacao com esse nome";
+            return "Já existe filme com esse nome";
         }
          
         
@@ -130,7 +145,7 @@ public class FilmeDAO extends ExecuteSQL{
                     f.setDuracao(rs.getString(4));
                     f.setCod_categoria(rs.getInt(5));
                     f.setCod_classificacao(rs.getInt(rs.getInt(6)));
-                    f.setCapa(rs.getString(rs.getString(6)));
+                    f.setCapa(rs.getString(rs.getString(7)));
                     
                     lista.add(f);
                 }return lista;
@@ -165,7 +180,7 @@ public class FilmeDAO extends ExecuteSQL{
                     f.setDuracao(rs.getString(4));
                     f.setCod_categoria(rs.getInt(5));
                     f.setCod_classificacao(rs.getInt(rs.getInt(6)));
-                    f.setCapa(rs.getString(rs.getString(6)));
+                    f.setCapa(rs.getString(rs.getString(7)));
                     
                     lista.add(f);     
                    
@@ -201,7 +216,7 @@ public class FilmeDAO extends ExecuteSQL{
                     f.setDuracao(rs.getString(4));
                     f.setCod_categoria(rs.getInt(5));
                     f.setCod_classificacao(rs.getInt(rs.getInt(6)));
-                    f.setCapa(rs.getString(rs.getString(6)));
+                    f.setCapa(rs.getString(rs.getString(7)));
                     
                     lista.add(f);
                 }return lista;
