@@ -5,10 +5,9 @@
  */
 package Principal;
 
-import Visao.Alterar.AlterarCategoria;
-import Visao.Alterar.AlterarClassificacao;
-import Visao.Cadastrar.CadastrarClassificacao;
-import Visao.Excluir.ExcluirClassificacao;
+import Visao.Cadastrar.CadastrarFilme;
+
+
 
 
 
@@ -22,6 +21,6 @@ import Visao.Excluir.ExcluirClassificacao;
  */
 public class Main {
     public static void main(String[] args){
-        new ExcluirClassificacao().setVisible(true);
+        new CadastrarFilme().setVisible(true);
     }
 }

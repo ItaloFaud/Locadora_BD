@@ -5,7 +5,12 @@
  */
 package Visao.Cadastrar;
 
+import DAO.ClienteDAO;
+import DAO.Conexao;
+import Modelo.Cliente;
 import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +27,20 @@ public class CadastrarCliente extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(this);
         
+    }
+    
+    public void Limpar(){
+        JtfID.setText("");
+        JtfNome.setText("");
+        JftfCpf.setText("");
+        JftfRg.setText("");
+        JftfTel.setText("");
+        JftfData.setText("");
+        JtfRua.setText("");
+        JtfNum.setText("");
+        JtfBairro.setText("");
+        JtfEmail.setText("");
+        JftfCep.setText("");
     }
 
     /**
@@ -57,7 +76,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
         JtfBairro = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         JftfData = new javax.swing.JFormattedTextField();
-        JftfNum = new javax.swing.JFormattedTextField();
+        JtfNum = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         BtnCadastrar = new javax.swing.JButton();
         BtnLimpar = new javax.swing.JButton();
@@ -199,17 +218,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
             }
         });
 
-        try {
-            JftfNum.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#######")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        JftfNum.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JftfNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JftfNumActionPerformed(evt);
-            }
-        });
+        JtfNum.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,37 +234,38 @@ public class CadastrarCliente extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(JtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JtfNome)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(JtfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(JftfCep))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(JftfTel)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(JftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(JftfRg, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(JtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JtfNome)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(JtfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel12)
+                            .addGap(18, 18, 18)
+                            .addComponent(JftfCep))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(JftfTel)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel10)
+                            .addGap(18, 18, 18)
+                            .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(JftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(31, 31, 31)
+                            .addComponent(jLabel7)
+                            .addGap(18, 18, 18)
+                            .addComponent(JftfRg, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JtfEmail))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(JtfRua, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel9)
-                        .addGap(12, 12, 12)
-                        .addComponent(JftfNum))
-                    .addComponent(JtfEmail))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(JtfNum, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -286,7 +296,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(JtfRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(JftfNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JtfNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JtfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,26 +383,45 @@ public class CadastrarCliente extends javax.swing.JFrame {
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
+        if(JtfNome.getText().equalsIgnoreCase("") && JftfTel.getText().equalsIgnoreCase("") && JtfEmail.getText().equalsIgnoreCase("")
+           && JftfCep.getText().equalsIgnoreCase("") && JftfRg.getText().equalsIgnoreCase("") && JftfCpf.getText().equalsIgnoreCase("")
+           && JtfNum.getText().equalsIgnoreCase("") && JftfData.getText().equalsIgnoreCase("") && JtfBairro.getText().equalsIgnoreCase("")
+           && JtfRua.getText().equalsIgnoreCase("") && JftfCep.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Campos vazios!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+            
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            ClienteDAO sql = new ClienteDAO(con);
+            Cliente c = new Cliente();
+            
+            c.setNome(JtfNome.getText());
+            c.setNascimento(JftfData.getText());
+            c.setRg(JftfRg.getText());
+            c.setCpf(JftfCpf.getText());
+            c.setEmail(JtfEmail.getText());
+            c.setTelefone(JftfTel.getText());
+            c.setBairro(JtfBairro.getText());
+            c.setRua(JtfRua.getText());
+            c.setNumero(Integer.parseInt(JtfNum.getText()));
+            c.setCep(JftfCep.getText());
+            
+            JOptionPane.showMessageDialog(null, sql.Cadastro(c),"Video Locadora",JOptionPane.INFORMATION_MESSAGE);
+            Limpar();
+            Conexao.FecharConexao(con);
+            
+            
+            
+        }
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
         // TODO add your handling code here:
-        JtfID.setText("");
-        JtfNome.setText("");
-        JftfCpf.setText("");
-        JftfRg.setText("");
-        JftfTel.setText("");
-        JftfData.setText("");
-        JtfRua.setText("");
-        JftfNum.setText("");
-        JtfBairro.setText("");
-        JtfEmail.setText("");
-        JftfCep.setText("");
+        Limpar();
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
+        //new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
@@ -419,10 +448,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private void JftfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JftfDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JftfDataActionPerformed
-
-    private void JftfNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JftfNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JftfNumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,13 +502,13 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField JftfCep;
     private javax.swing.JFormattedTextField JftfCpf;
     private javax.swing.JFormattedTextField JftfData;
-    private javax.swing.JFormattedTextField JftfNum;
     private javax.swing.JFormattedTextField JftfRg;
     private javax.swing.JFormattedTextField JftfTel;
     private javax.swing.JTextField JtfBairro;
     private javax.swing.JTextField JtfEmail;
     private javax.swing.JTextField JtfID;
     private javax.swing.JTextField JtfNome;
+    private javax.swing.JTextField JtfNum;
     private javax.swing.JTextField JtfRua;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

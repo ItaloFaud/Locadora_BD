@@ -93,6 +93,7 @@ public class CadastrarFilme extends javax.swing.JFrame {
         JtfID.setEditable(false);
         JtfID.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
+        JtfNome.setEditable(false);
         JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -109,6 +110,7 @@ public class CadastrarFilme extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel5.setText("Classificação:");
 
+        JtfNome1.setEditable(false);
         JtfNome1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         JtfNome2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -211,7 +213,6 @@ public class CadastrarFilme extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
                                 .addComponent(JtfNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -5,8 +5,17 @@
  */
 package Visao.Excluir;
 
+import DAO.ClassificacaoDAO;
+import DAO.ClienteDAO;
+import DAO.Conexao;
+import Modelo.Classificacao;
+import Modelo.Cliente;
 import Visao.Cadastrar.*;
 import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +31,22 @@ public class ExcluirCliente extends javax.swing.JFrame {
         setTitle("Vídeo Locadora");
         setResizable(false);
         setLocationRelativeTo(this);
+        AtualizaCombo();
         
+    }
+    
+    private void AtualizaCombo(){
+        Connection con = Conexao.AbrirConexao();
+        ClienteDAO sql = new ClienteDAO(con);
+        List<Cliente> lista = new ArrayList<>();
+        lista = sql.ListarComboCliente();
+        //jComboBox1.addItem("");
+        
+        for(Cliente f : lista){
+            jComboBox1.addItem(f.getNome());
+        }
+        
+        Conexao.FecharConexao(con);
     }
 
     /**
@@ -74,10 +98,16 @@ public class ExcluirCliente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel3.setText("Nome:");
 
+        JtfNome.setEditable(false);
         JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jComboBox1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,13 +196,56 @@ public class ExcluirCliente extends javax.swing.JFrame {
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
+        String codd = JtfNome.getText();
+        String nome = jComboBox1.getSelectedItem().toString();
+        
+        Connection con = Conexao.AbrirConexao();
+        ClienteDAO sql = new ClienteDAO(con);
+        Cliente c = new Cliente();
+        
+        if(nome.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Nenhum nome selecionado", "Vídeo Locadora", JOptionPane.ERROR_MESSAGE);
+        }else{
+            int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir \n("+codd+")"
+                    + " ("+nome+")?","Vídeo Locadora",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            
+            if (confirm == 0){
+                int cod = Integer.parseInt(codd);
+                c.setCodigo(cod);
+                c.setNome(nome);
+                sql.ExcluirCliente(c);
+                Conexao.FecharConexao(con);
+                jComboBox1.setSelectedIndex(0);
+                JtfNome.setText("");
+                //dispose();
+            }
+        }
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
+       // new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        ClienteDAO sql = new ClienteDAO(con);
+        
+        List<Cliente> lista = new ArrayList<>();
+        String nome = jComboBox1.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoCliente(nome);
+        
+        for(Cliente f : lista){
+            int cod = f.getCodigo();
+            JtfNome.setText(""+cod);
+        }
+        
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

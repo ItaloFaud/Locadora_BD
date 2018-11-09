@@ -154,7 +154,6 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="JtfNome2" min="-2" pref="221" max="-2" attributes="0"/>
@@ -243,6 +242,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="JtfNome">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Copperplate Gothic Light" size="14" style="0"/>
             </Property>
@@ -303,6 +303,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="JtfNome1">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Copperplate Gothic Light" size="14" style="0"/>
             </Property>
