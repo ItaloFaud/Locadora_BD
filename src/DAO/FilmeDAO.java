@@ -108,7 +108,7 @@ public class FilmeDAO extends ExecuteSQL{
                     + " duracao = '"+c.getDuracao()+"',"
                     + " idcategoria = '"+c.getCod_categoria()+"',"
                     + " idclassificacao = '"+c.getCod_classificacao()+"',"
-                    + " capa = '"+c.getCapa()+"',"
+                    + " capa = '"+c.getCapa()+"'"
                     + " where idfilme = '"+c.getCodigo()+"'";
             PreparedStatement ps = getCon().prepareStatement(up);
             

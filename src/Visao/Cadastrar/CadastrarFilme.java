@@ -5,8 +5,18 @@
  */
 package Visao.Cadastrar;
 
+import DAO.CategoriaDAO;
+import DAO.ClassificacaoDAO;
+import DAO.Conexao;
+import DAO.FilmeDAO;
+import Modelo.Categoria;
+import Modelo.Classificacao;
+import Modelo.Filme;
 import Principal.Menu;
 import java.io.File;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -25,8 +35,50 @@ public class CadastrarFilme extends javax.swing.JFrame {
         setTitle("Vídeo Locadora");
         setResizable(false);
         setLocationRelativeTo(this);
+        AtualizaComboCategoria();
+        AtualizaComboClassificacao();
         
     }
+    
+    
+    private void AtualizaComboCategoria(){
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        List<Categoria> lista = new ArrayList<>();
+        lista = sql.ListarComboCategoria();
+        //jComboBox1.addItem("");
+        
+        for(Categoria f : lista){
+            jComboBoxCategoria.addItem(f.getNome());
+        }
+        
+        Conexao.FecharConexao(con);
+    }
+    
+    private void AtualizaComboClassificacao(){
+        Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        List<Classificacao> lista = new ArrayList<>();
+        lista = sql.ListarComboClassificacao();
+        //jComboBox1.addItem("");
+        
+        for(Classificacao f : lista){
+            jComboBoxClassificacao.addItem(f.getNome());
+        }
+        
+        Conexao.FecharConexao(con);
+    }
+    
+    public void Limpar(){
+        JtfAno.setText("");
+        JtfNome3.setText("");
+        JftfDuracao.setText("");
+        jComboBoxCategoria.setSelectedItem(0);
+        jComboBoxClassificacao.setSelectedItem(0);
+        JtfCapa.setText("");
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,13 +94,13 @@ public class CadastrarFilme extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         JtfID = new javax.swing.JTextField();
-        JtfNome = new javax.swing.JTextField();
+        JtfCategoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         LbCapa = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxCategoria = new javax.swing.JComboBox<>();
+        jComboBoxClassificacao = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        JtfNome1 = new javax.swing.JTextField();
+        JtfClassificacao = new javax.swing.JTextField();
         JtfAno = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         BtnEscolher = new javax.swing.JButton();
@@ -97,25 +149,35 @@ public class CadastrarFilme extends javax.swing.JFrame {
         JtfID.setEditable(false);
         JtfID.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
-        JtfNome.setEditable(false);
-        JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCategoria.setEditable(false);
+        JtfCategoria.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel2.setText("Codigo:");
 
         LbCapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD_VIDEO_logo.png"))); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxCategoria.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCategoriaActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxClassificacao.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        jComboBoxClassificacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxClassificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxClassificacaoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel5.setText("Classificação:");
 
-        JtfNome1.setEditable(false);
-        JtfNome1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfClassificacao.setEditable(false);
+        JtfClassificacao.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         JtfAno.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
@@ -209,13 +271,13 @@ public class CadastrarFilme extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JtfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBoxClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -245,13 +307,13 @@ public class CadastrarFilme extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BtnEscolher)
@@ -335,14 +397,32 @@ public class CadastrarFilme extends javax.swing.JFrame {
 
     private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
         // TODO add your handling code here:
+        if(JtfAno.getText().equalsIgnoreCase("") && JtfNome3.getText().equalsIgnoreCase("") && JtfCategoria.getText().equalsIgnoreCase("") &&
+                JtfCategoria.getText().equalsIgnoreCase("") && JtfCapa.getText().equalsIgnoreCase("") && JftfDuracao.getText().equalsIgnoreCase("")){
+             JOptionPane.showMessageDialog(null, "Campos vazios!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            FilmeDAO sql = new FilmeDAO(con);
+            Filme f = new Filme();
+            f.setTitulo(JtfNome3.getText());
+            f.setAno(Integer.parseInt(JtfAno.getText()));
+            f.setDuracao(JftfDuracao.getText());
+            f.setCod_categoria(Integer.parseInt(JtfCategoria.getText()));
+            f.setCod_classificacao(Integer.parseInt(JtfClassificacao.getText()));
+            f.setCapa(JtfCapa.getText());
+            
+            
+            //sql.Cadastro(f);
+            JOptionPane.showMessageDialog(null, sql.Cadastro(f),"Video Locadora",JOptionPane.INFORMATION_MESSAGE);
+            Limpar();
+        }
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
         // TODO add your handling code here:
         
        
-        JtfID.setText("");
-        JtfNome.setText("");
+        Limpar();
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -370,6 +450,44 @@ public class CadastrarFilme extends javax.swing.JFrame {
     private void JftfDuracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JftfDuracaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JftfDuracaoActionPerformed
+
+    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        
+        List<Categoria> lista = new ArrayList<>();
+        String nome = jComboBoxCategoria.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoCategoria(nome);
+        
+        for(Categoria f : lista){
+            int cod = f.getCodigo();
+            JtfCategoria.setText(""+cod);
+        }
+        
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
+
+    private void jComboBoxClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassificacaoActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        
+        List<Classificacao> lista = new ArrayList<>();
+        String nome = jComboBoxClassificacao.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoClassificacao(nome);
+        
+        for(Classificacao f : lista){
+            int cod = f.getCodigo();
+            JtfClassificacao.setText(""+cod);
+        }
+        
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jComboBoxClassificacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,13 +551,13 @@ public class CadastrarFilme extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField JftfDuracao;
     private javax.swing.JTextField JtfAno;
     private javax.swing.JTextField JtfCapa;
+    private javax.swing.JTextField JtfCategoria;
+    private javax.swing.JTextField JtfClassificacao;
     private javax.swing.JTextField JtfID;
-    private javax.swing.JTextField JtfNome;
-    private javax.swing.JTextField JtfNome1;
     private javax.swing.JTextField JtfNome3;
     private javax.swing.JLabel LbCapa;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBoxCategoria;
+    private javax.swing.JComboBox<String> jComboBoxClassificacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

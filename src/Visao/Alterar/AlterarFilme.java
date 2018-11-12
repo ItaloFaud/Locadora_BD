@@ -5,8 +5,22 @@
  */
 package Visao.Alterar;
 
+import DAO.CategoriaDAO;
+import DAO.ClassificacaoDAO;
+import DAO.Conexao;
+import DAO.FilmeDAO;
+import Modelo.Categoria;
+import Modelo.Classificacao;
+import Modelo.Filme;
 import Visao.Cadastrar.*;
 import Principal.Menu;
+import java.io.File;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,7 +36,50 @@ public class AlterarFilme extends javax.swing.JFrame {
         setTitle("Vídeo Locadora");
         setResizable(false);
         setLocationRelativeTo(this);
+        AtualizaComboCategoria();
+        AtualizaComboClassificacao();
         
+    }
+    
+    private void AtualizaComboCategoria(){
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        List<Categoria> lista = new ArrayList<>();
+        lista = sql.ListarComboCategoria();
+        //jComboBox1.addItem("");
+        
+        for(Categoria f : lista){
+            jComboBoxCategoria.addItem(f.getNome());
+        }
+        
+        Conexao.FecharConexao(con);
+    }
+    
+    private void AtualizaComboClassificacao(){
+        Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        List<Classificacao> lista = new ArrayList<>();
+        lista = sql.ListarComboClassificacao();
+        //jComboBox1.addItem("");
+        
+        for(Classificacao f : lista){
+            jComboBoxClassificacao.addItem(f.getNome());
+        }
+        
+        Conexao.FecharConexao(con);
+    }
+    
+    public void Limpar(){
+        JtfID.setText("");
+        JtfAno.setText("");
+        JtfNome3.setText("");
+        JftfDuracao.setText("");
+        jComboBoxCategoria.setSelectedIndex(0);
+        jComboBoxClassificacao.setSelectedIndex(0);
+        JtfCategoria.setText("");
+        JtfClassificacao.setText("");
+        LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Imagens/Imagens/DVD_VIDEO_logo.png"));
+        JtfCapa.setText("");
     }
 
     /**
@@ -39,30 +96,30 @@ public class AlterarFilme extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         JtfID = new javax.swing.JTextField();
-        JtfNome = new javax.swing.JTextField();
+        JtfCategoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        LbCapa = new javax.swing.JLabel();
+        jComboBoxCategoria = new javax.swing.JComboBox<>();
+        jComboBoxClassificacao = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        JtfNome1 = new javax.swing.JTextField();
-        JtfNome2 = new javax.swing.JTextField();
+        JtfClassificacao = new javax.swing.JTextField();
+        JtfCapa = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        BtnCadastrar1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         JtfNome3 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        JftfData = new javax.swing.JFormattedTextField();
-        JftfData1 = new javax.swing.JFormattedTextField();
+        JftfDuracao = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
+        BtnEscolher = new javax.swing.JButton();
+        JtfAno = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        BtnCadastrar = new javax.swing.JButton();
+        BtnAlterar = new javax.swing.JButton();
         BtnLimpar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
-        JtfNome4 = new javax.swing.JTextField();
+        JtfCod = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        BtnCadastrar2 = new javax.swing.JButton();
+        BtnConfere = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,36 +154,41 @@ public class AlterarFilme extends javax.swing.JFrame {
         JtfID.setEditable(false);
         JtfID.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
-        JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCategoria.setEditable(false);
+        JtfCategoria.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel2.setText("Codigo:");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD_VIDEO_logo.png"))); // NOI18N
+        LbCapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD_VIDEO_logo.png"))); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxCategoria.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxCategoriaActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxClassificacao.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        jComboBoxClassificacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxClassificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxClassificacaoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel5.setText("Classificação:");
 
-        JtfNome1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfClassificacao.setEditable(false);
+        JtfClassificacao.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
-        JtfNome2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCapa.setEditable(false);
+        JtfCapa.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel9.setText("Capa:");
-
-        BtnCadastrar1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar1.setText("OK");
-        BtnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrar1ActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel10.setText("Capa 270x190");
@@ -140,31 +202,29 @@ public class AlterarFilme extends javax.swing.JFrame {
         jLabel12.setText("Ano:");
 
         try {
-            JftfData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            JftfDuracao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        JftfData.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JftfData.addActionListener(new java.awt.event.ActionListener() {
+        JftfDuracao.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JftfDuracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JftfDataActionPerformed(evt);
-            }
-        });
-
-        try {
-            JftfData1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        JftfData1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        JftfData1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JftfData1ActionPerformed(evt);
+                JftfDuracaoActionPerformed(evt);
             }
         });
 
         jLabel13.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel13.setText("Duração:");
+
+        BtnEscolher.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnEscolher.setText("Escolher");
+        BtnEscolher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEscolherActionPerformed(evt);
+            }
+        });
+
+        JtfAno.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -179,19 +239,28 @@ public class AlterarFilme extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel12)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(JtfAno, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel13)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(JftfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(JtfNome3, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel13)
+                                        .addComponent(JtfCapa)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(JftfData1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(JtfNome3, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
+                                        .addComponent(BtnEscolher)
+                                        .addGap(27, 27, 27)))
+                                .addComponent(LbCapa)
                                 .addContainerGap())
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(JtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,27 +268,19 @@ public class AlterarFilme extends javax.swing.JFrame {
                                 .addComponent(jLabel10)
                                 .addGap(94, 94, 94))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel3))
+                                .addComponent(JtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(JtfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(JtfNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BtnCadastrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBoxClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -243,35 +304,35 @@ public class AlterarFilme extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JftfData1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
+                            .addComponent(JftfDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13)
+                            .addComponent(JtfAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BtnCadastrar1)
-                            .addComponent(JtfNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
-                    .addComponent(jLabel7))
+                            .addComponent(JtfCapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(BtnEscolher)))
+                    .addComponent(LbCapa))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        BtnCadastrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar.setText("Alterar");
-        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        BtnAlterar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnAlterar.setText("Alterar");
+        BtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrarActionPerformed(evt);
+                BtnAlterarActionPerformed(evt);
             }
         });
 
@@ -299,8 +360,8 @@ public class AlterarFilme extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(BtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(183, 183, 183)
-                .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addComponent(BtnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -310,21 +371,26 @@ public class AlterarFilme extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(BtnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(BtnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        JtfNome4.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCod.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtfCodActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel14.setText("Digite o código:");
 
-        BtnCadastrar2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar2.setText("OK");
-        BtnCadastrar2.addActionListener(new java.awt.event.ActionListener() {
+        BtnConfere.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnConfere.setText("OK");
+        BtnConfere.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrar2ActionPerformed(evt);
+                BtnConfereActionPerformed(evt);
             }
         });
 
@@ -339,9 +405,9 @@ public class AlterarFilme extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JtfNome4, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtnCadastrar2)
+                .addComponent(BtnConfere)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -351,8 +417,8 @@ public class AlterarFilme extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(JtfNome4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCadastrar2))
+                    .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnConfere))
                 .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -363,39 +429,167 @@ public class AlterarFilme extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+    private void BtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrarActionPerformed
+       Connection con = Conexao.AbrirConexao();
+       FilmeDAO sql = new FilmeDAO(con);
+       
+       if(JtfAno.getText().equalsIgnoreCase("") && JtfNome3.getText().equalsIgnoreCase("") && JtfCategoria.getText().equalsIgnoreCase("") &&
+                JtfCategoria.getText().equalsIgnoreCase("") && JtfCapa.getText().equalsIgnoreCase("") && JftfDuracao.getText().equalsIgnoreCase("")){
+             JOptionPane.showMessageDialog(null, "Campos vazios!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+           Filme f = new Filme();
+           f.setCodigo(Integer.parseInt(JtfID.getText()));
+           f.setTitulo(JtfNome3.getText());
+           f.setAno(Integer.parseInt(JtfAno.getText()));
+           f.setDuracao(JftfDuracao.getText());
+           f.setCod_categoria(Integer.parseInt(JtfCategoria.getText()));
+           f.setCod_classificacao(Integer.parseInt(JtfClassificacao.getText()));
+           f.setCapa(JtfCapa.getText());
+           JOptionPane.showMessageDialog(null, sql.Alterar(f),"Video Locadora",JOptionPane.INFORMATION_MESSAGE);
+           Limpar();
+           
+           
+       }
+       
+       
+        
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_BtnAlterarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
         // TODO add your handling code here:
         
        
-        JtfID.setText("");
-        JtfNome.setText("");
+        Limpar();
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
+        //new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    private void BtnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrar1ActionPerformed
+    private void JftfDuracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JftfDuracaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrar1ActionPerformed
+    }//GEN-LAST:event_JftfDuracaoActionPerformed
 
-    private void JftfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JftfDataActionPerformed
+    private void BtnConfereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfereActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JftfDataActionPerformed
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO sql = new FilmeDAO(con);
+        CategoriaDAO cat = new CategoriaDAO(con);
+        ClassificacaoDAO cla = new ClassificacaoDAO(con);
+        
+        int cod = Integer.parseInt(JtfCod.getText());
+        
+        if(JtfCod.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Filme c = new Filme();
+            c.setCodigo(cod);
+            JOptionPane.showMessageDialog(null, sql.Conferir(c));
+            JtfID.setText(""+c.getCodigo());
+            JtfNome3.setText(c.getTitulo());
+            JtfAno.setText(""+c.getAno());
+            JftfDuracao.setText(c.getDuracao());
+            JtfCategoria.setText(""+c.getCod_categoria());
+            JtfClassificacao.setText(""+c.getCod_classificacao());
+            jComboBoxCategoria.setSelectedItem(cat.PegaCat(c.getCod_categoria()));
+            jComboBoxClassificacao.setSelectedItem(cla.PegaCla(c.getCod_classificacao()));
+            LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+c.getCapa()));
+            JtfCapa.setText(c.getCapa());
+            
+        }
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_BtnConfereActionPerformed
 
-    private void JftfData1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JftfData1ActionPerformed
+    private void BtnEscolherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEscolherActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JftfData1ActionPerformed
+        try{
+            JFileChooser foto = new JFileChooser();
+            foto.setCurrentDirectory(new File("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas"));
+            foto.setDialogTitle("Carregar Capa");
+            foto.showOpenDialog(this);
+            String a = ""+foto.getSelectedFile().getName();
+            JtfCapa.setText(a);
+            LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+a));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Não foi possível carregar a capa");
+        }
 
-    private void BtnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrar2ActionPerformed
+    }//GEN-LAST:event_BtnEscolherActionPerformed
+
+    private void JtfCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfCodActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrar2ActionPerformed
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO sql = new FilmeDAO(con);
+        CategoriaDAO cat = new CategoriaDAO(con);
+        ClassificacaoDAO cla = new ClassificacaoDAO(con);
+        
+        int cod = Integer.parseInt(JtfCod.getText());
+        
+        if(JtfCod.getText().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
+        }else{
+            Filme c = new Filme();
+            c.setCodigo(cod);
+            JOptionPane.showMessageDialog(null, sql.Conferir(c));
+            JtfID.setText(""+c.getCodigo());
+            JtfNome3.setText(c.getTitulo());
+            JtfAno.setText(""+c.getAno());
+            JftfDuracao.setText(c.getDuracao());
+            JtfCategoria.setText(""+c.getCod_categoria());
+            JtfClassificacao.setText(""+c.getCod_classificacao());
+            jComboBoxCategoria.setSelectedItem(cat.PegaCat(c.getCod_categoria()));
+            jComboBoxClassificacao.setSelectedItem(cla.PegaCla(c.getCod_classificacao()));
+            LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+c.getCapa()));
+            JtfCapa.setText(c.getCapa());
+            
+        }
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_JtfCodActionPerformed
+
+    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        
+        List<Categoria> lista = new ArrayList<>();
+        String nome = jComboBoxCategoria.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoCategoria(nome);
+        
+        for(Categoria f : lista){
+            int cod = f.getCodigo();
+            JtfCategoria.setText(""+cod);
+        }
+        
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
+
+    private void jComboBoxClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClassificacaoActionPerformed
+        // TODO add your handling code here:
+               Connection con = Conexao.AbrirConexao();
+        ClassificacaoDAO sql = new ClassificacaoDAO(con);
+        
+        List<Classificacao> lista = new ArrayList<>();
+        String nome = jComboBoxClassificacao.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoClassificacao(nome);
+        
+        for(Classificacao f : lista){
+            int cod = f.getCodigo();
+            JtfClassificacao.setText(""+cod);
+        }
+        
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jComboBoxClassificacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -468,21 +662,22 @@ public class AlterarFilme extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCadastrar;
-    private javax.swing.JButton BtnCadastrar1;
-    private javax.swing.JButton BtnCadastrar2;
+    private javax.swing.JButton BtnAlterar;
     private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnConfere;
+    private javax.swing.JButton BtnEscolher;
     private javax.swing.JButton BtnLimpar;
-    private javax.swing.JFormattedTextField JftfData;
-    private javax.swing.JFormattedTextField JftfData1;
+    private javax.swing.JFormattedTextField JftfDuracao;
+    private javax.swing.JTextField JtfAno;
+    private javax.swing.JTextField JtfCapa;
+    private javax.swing.JTextField JtfCategoria;
+    private javax.swing.JTextField JtfClassificacao;
+    private javax.swing.JTextField JtfCod;
     private javax.swing.JTextField JtfID;
-    private javax.swing.JTextField JtfNome;
-    private javax.swing.JTextField JtfNome1;
-    private javax.swing.JTextField JtfNome2;
     private javax.swing.JTextField JtfNome3;
-    private javax.swing.JTextField JtfNome4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel LbCapa;
+    private javax.swing.JComboBox<String> jComboBoxCategoria;
+    private javax.swing.JComboBox<String> jComboBoxClassificacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -492,7 +687,6 @@ public class AlterarFilme extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

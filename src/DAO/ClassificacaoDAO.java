@@ -281,4 +281,29 @@ public class ClassificacaoDAO extends ExecuteSQL{
        
     }
     
+    public String PegaCla(int Cod){
+        String sql = "select nome from classificacao where idclassificacao = '"+Cod+"'";
+        try {
+            
+            String classificacao;
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs != null){
+                while (rs.next()) {                    
+                    //Categoria c = new Categoria();
+                    classificacao = rs.getString(1);
+                    return classificacao;
+                }
+            }else{
+                return null;
+            }
+            
+        } catch (SQLException ex) {
+           // Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return null;
+    }
+    
 }

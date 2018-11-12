@@ -274,6 +274,31 @@ public class CategoriaDAO extends ExecuteSQL{
        
     }
     
+    public String PegaCat(int Cod){
+        String sql = "select nome from categoria where idcategoria = '"+Cod+"'";
+        try {
+            
+            String categoria;
+            PreparedStatement ps = getCon().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs != null){
+                while (rs.next()) {                    
+                    //Categoria c = new Categoria();
+                    categoria = rs.getString(1);
+                    return categoria;
+                }
+            }else{
+                return null;
+            }
+            
+        } catch (SQLException ex) {
+          //  Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return null;
+    }
+    
     
     
 }
