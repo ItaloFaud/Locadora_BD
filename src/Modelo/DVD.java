@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Hoope
@@ -13,8 +15,17 @@ public class DVD {
     private int codigo;
     private int cod_filme;
     private String situacao;
-    private double preco;
+    private String preco;
     private String data_compra;
+
+    public String getData_compra() {
+        return data_compra;
+    }
+
+    public void setData_compra(String data_compra) {
+        this.data_compra = data_compra;
+    }
+    
 
     public int getCodigo() {
         return codigo;
@@ -40,19 +51,13 @@ public class DVD {
         this.situacao = situacao;
     }
 
-    public double getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
     }
 
-    public String getData_compra() {
-        return data_compra;
-    }
-
-    public void setData_compra(String data_compra) {
-        this.data_compra = data_compra;
-    }
+   
 }

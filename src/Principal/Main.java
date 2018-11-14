@@ -5,8 +5,6 @@
  */
 package Principal;
 
-import Visao.Alterar.AlterarFilme;
-import Visao.Cadastrar.CadastrarFilme;
 
 
 
@@ -22,6 +20,6 @@ import Visao.Cadastrar.CadastrarFilme;
  */
 public class Main {
     public static void main(String[] args){
-        new AlterarFilme().setVisible(true);
+        new Login().setVisible(true);
     }
 }

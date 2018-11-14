@@ -73,9 +73,10 @@ public class CadastrarFilme extends javax.swing.JFrame {
         JtfAno.setText("");
         JtfNome3.setText("");
         JftfDuracao.setText("");
-        jComboBoxCategoria.setSelectedItem(0);
-        jComboBoxClassificacao.setSelectedItem(0);
+        jComboBoxCategoria.setSelectedIndex(0);
+        jComboBoxClassificacao.setSelectedIndex(0);
         JtfCapa.setText("");
+        LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Imagens/Imagens/DVD_VIDEO_logo.png"));
     }
     
     

@@ -127,7 +127,7 @@ public class FilmeDAO extends ExecuteSQL{
         
     }
     
-    public List<Filme> Consulta() {
+        public List<Filme> Consulta() {
         String consulta = "select idfilme,titulo,ano,duracao,idcategoria,idclassificacao,capa from filme";
             List<Filme> lista = new ArrayList<>();
         try {
@@ -144,8 +144,8 @@ public class FilmeDAO extends ExecuteSQL{
                     f.setAno(rs.getInt(3));
                     f.setDuracao(rs.getString(4));
                     f.setCod_categoria(rs.getInt(5));
-                    f.setCod_classificacao(rs.getInt(rs.getInt(6)));
-                    f.setCapa(rs.getString(rs.getString(7)));
+                    f.setCod_classificacao(rs.getInt(6));
+                    f.setCapa(rs.getString(7));
                     
                     lista.add(f);
                 }return lista;
@@ -179,8 +179,8 @@ public class FilmeDAO extends ExecuteSQL{
                     f.setAno(rs.getInt(3));
                     f.setDuracao(rs.getString(4));
                     f.setCod_categoria(rs.getInt(5));
-                    f.setCod_classificacao(rs.getInt(rs.getInt(6)));
-                    f.setCapa(rs.getString(rs.getString(7)));
+                    f.setCod_classificacao(rs.getInt(6));
+                    f.setCapa(rs.getString(7));
                     
                     lista.add(f);     
                    
@@ -215,8 +215,8 @@ public class FilmeDAO extends ExecuteSQL{
                     f.setAno(rs.getInt(3));
                     f.setDuracao(rs.getString(4));
                     f.setCod_categoria(rs.getInt(5));
-                    f.setCod_classificacao(rs.getInt(rs.getInt(6)));
-                    f.setCapa(rs.getString(rs.getString(7)));
+                    f.setCod_classificacao(rs.getInt(6));
+                    f.setCapa(rs.getString(7));
                     
                     lista.add(f);
                 }return lista;
@@ -235,7 +235,7 @@ public class FilmeDAO extends ExecuteSQL{
     
     public List<Filme> ListarComboFilme(){
         try {
-            String sql = "select nome from filme order by titulo";
+            String sql = "select titulo from filme order by titulo";
             List<Filme> lista = new ArrayList<>();
             
             PreparedStatement ps = getCon().prepareStatement(sql);
@@ -306,6 +306,31 @@ public class FilmeDAO extends ExecuteSQL{
             return ex.getMessage();
         }
        
+    }
+    
+    public String PegaNome(int cod){
+        String con = "select titulo from filme where idfilme = '"+cod+"'";
+         try {
+            
+            String classificacao;
+            PreparedStatement ps = getCon().prepareStatement(con);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs != null){
+                while (rs.next()) {                    
+                    //Categoria c = new Categoria();
+                    classificacao = rs.getString(1);
+                    return classificacao;
+                }
+            }else{
+                return null;
+            }
+            
+        } catch (SQLException ex) {
+           // Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return null;
     }
     
 }
