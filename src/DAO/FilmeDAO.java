@@ -310,8 +310,8 @@ public class FilmeDAO extends ExecuteSQL{
        
     }
     
-    public String PegaNome(int cod){
-        String con = "select titulo from filme where idfilme = '"+cod+"'";
+    public String PegaNome(int cod,Filme f){
+        String con = "select titulo,capa from filme where idfilme = '"+cod+"'";
          try {
             
             String classificacao;
@@ -322,6 +322,7 @@ public class FilmeDAO extends ExecuteSQL{
                 while (rs.next()) {                    
                     //Categoria c = new Categoria();
                     classificacao = rs.getString(1);
+                    f.setCapa(rs.getString(2));
                     return classificacao;
                 }
             }else{

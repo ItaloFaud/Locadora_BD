@@ -20,6 +20,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -356,6 +357,7 @@ public class AlterarDVD extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(0);
         JftfHoje.setText("");
         JftfPreco.setText("");
+        LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Imagens/Imagens/DVD_VIDEO_logo.png"));
     }//GEN-LAST:event_BtnCadastrarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
@@ -365,6 +367,7 @@ public class AlterarDVD extends javax.swing.JFrame {
         JtfID.setText("");
         JtfFilme.setText("");
         JftfPreco.setText("");
+        LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Imagens/Imagens/DVD_VIDEO_logo.png"));
         
     }//GEN-LAST:event_BtnLimparActionPerformed
 
@@ -394,14 +397,16 @@ public class AlterarDVD extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
         }else{
             DVD c = new DVD();
+            Filme f = new Filme();
             c.setCodigo(cod);
             JOptionPane.showMessageDialog(null, sql.Conferir(c));
             JtfID.setText(""+c.getCodigo());
             JtfSituacao.setText(c.getSituacao());
             JtfFilme.setText(c.getCod_filme()+"");
-            jComboBox1.setSelectedItem(sql2.PegaNome(c.getCod_filme()));
+            jComboBox1.setSelectedItem(sql2.PegaNome(c.getCod_filme(),f));
             JftfPreco.setText(c.getPreco()+"");
             JftfHoje.setText(c.getData_compra());
+            LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+f.getCapa()));
             //
             //Olhar ISSO
             //JtfData.setDate(c.getData_compra().);
@@ -423,14 +428,16 @@ public class AlterarDVD extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Campo vazio!","Video Locadora",JOptionPane.WARNING_MESSAGE);
         }else{
             DVD c = new DVD();
+            Filme f = new Filme();
             c.setCodigo(cod);
             JOptionPane.showMessageDialog(null, sql.Conferir(c));
             JtfID.setText(""+c.getCodigo());
             JtfSituacao.setText(c.getSituacao());
             JtfFilme.setText(c.getCod_filme()+"");
-            jComboBox1.setSelectedItem(sql2.PegaNome(c.getCod_filme()));
+            jComboBox1.setSelectedItem(sql2.PegaNome(c.getCod_filme(),f));
             JftfPreco.setText(c.getPreco()+"");
             JftfHoje.setText(c.getData_compra());
+            LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+f.getCapa()));
             //
             //Olhar ISSO
             //JtfData.setDate(c.getData_compra().);
@@ -442,7 +449,7 @@ public class AlterarDVD extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-                Connection con = Conexao.AbrirConexao();
+        Connection con = Conexao.AbrirConexao();
         FilmeDAO sql = new FilmeDAO(con);
         
         List<Filme> lista = new ArrayList<>();
@@ -453,6 +460,7 @@ public class AlterarDVD extends javax.swing.JFrame {
         for(Filme f : lista){
             int cod = f.getCodigo();
             JtfFilme.setText(""+cod);
+            LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+f.getCapa()));
         }
         
         

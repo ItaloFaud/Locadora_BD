@@ -59,7 +59,7 @@ public class AluguelDAO extends ExecuteSQL {
                         }
                     
                     //finalResult = true;
-                    return "DVD encontradO!";
+                    return "DVD disponível!";
                 }
             }else{
                 return "DVD já emprestado!";
@@ -69,7 +69,7 @@ public class AluguelDAO extends ExecuteSQL {
             Logger.getLogger(AluguelDAO.class.getName()).log(Level.SEVERE, null, ex);
             return "DVD não encontrado";
         }
-        return null;
+        return "DVD já emprestado";
         
     }
     
@@ -288,7 +288,7 @@ public class AluguelDAO extends ExecuteSQL {
     public String Devolver(){
         
             try {
-                String consulta = "DELETE FROM aluguel where idaluguel = '?'";
+                String consulta = "delete from aluguel where idaluguel = ?";
                 
                 PreparedStatement ps = getCon().prepareStatement(consulta);
                 
@@ -296,7 +296,7 @@ public class AluguelDAO extends ExecuteSQL {
                 
                 if(ps.executeUpdate() > 0){
                     try {
-                            String consulta2 = "UPDATE dvd set situacao = 'Disponível' where iddvd = '"+Listar.getCoddvd()+"'";
+                            String consulta2 = "update dvd set situacao = 'Disponível' where iddvd = '"+Listar.getCoddvd()+"'";
 
                             PreparedStatement ps2 = getCon().prepareStatement(consulta2);
 
