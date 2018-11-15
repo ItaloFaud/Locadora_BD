@@ -107,7 +107,7 @@ public class ClienteDAO extends ExecuteSQL{
             return "Erro!";
         }
         
-        return null;
+        return "Erro! Cliente inexistente!";
     }
     
     public String Alterar(Cliente c){
@@ -329,7 +329,8 @@ public class ClienteDAO extends ExecuteSQL{
             }     
         } catch (SQLException ex) {
            // Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return ex.getMessage();
+            return "Não é possível excluir esse cliente \n"
+                    + "(Há tabelas usando dados deste cliente)";
         }
        
     }

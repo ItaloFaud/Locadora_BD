@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,7 +67,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
         JtfID = new javax.swing.JTextField();
         JtfFilme = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        JlCapa = new javax.swing.JLabel();
         JtfSituacao = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -120,7 +121,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel2.setText("Codigo:");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD_VIDEO_logo.png"))); // NOI18N
+        JlCapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD_VIDEO_logo.png"))); // NOI18N
 
         JtfSituacao.setEditable(false);
         JtfSituacao.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -195,7 +196,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
+                            .addComponent(JlCapa)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(JftfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -225,7 +226,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
                     .addComponent(JftfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(jLabel7)
+                .addComponent(JlCapa)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -321,6 +322,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
             JftfPreco.setText("");
             jComboBox1.setSelectedIndex(0);
             JftfData.setText("");
+            JlCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Imagens/Imagens/DVD_VIDEO_logo.png"));
         }
         
     }//GEN-LAST:event_BtnCadastrarActionPerformed
@@ -331,6 +333,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
         JtfFilme.setText("");
         JftfPreco.setText("");
         jComboBox1.setSelectedIndex(0);
+         JlCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Imagens/Imagens/DVD_VIDEO_logo.png"));
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -360,6 +363,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
         for(Filme f : lista){
             int cod = f.getCodigo();
             JtfFilme.setText(""+cod);
+            JlCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+f.getCapa()));
         }
         
         
@@ -422,6 +426,7 @@ public class CadastrarDVD extends javax.swing.JFrame {
     private javax.swing.JButton BtnLimpar;
     private javax.swing.JFormattedTextField JftfData;
     private javax.swing.JFormattedTextField JftfPreco;
+    private javax.swing.JLabel JlCapa;
     private javax.swing.JTextField JtfFilme;
     private javax.swing.JTextField JtfID;
     private javax.swing.JTextField JtfSituacao;
@@ -431,7 +436,6 @@ public class CadastrarDVD extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

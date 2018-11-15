@@ -5,6 +5,17 @@
  */
 package Locacao;
 
+import DAO.AluguelDAO;
+import DAO.ClienteDAO;
+import DAO.Conexao;
+import Modelo.Aluguel;
+import Modelo.Cliente;
+import Modelo.Listar;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Hoope
@@ -19,6 +30,47 @@ public class ConsultarDevolucao extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(this);
         setTitle("Vídeo Locadora");
+        AtualizaCombo();
+        AtualizaTable();
+    }
+    
+    private void AtualizaCombo(){
+        Connection con = Conexao.AbrirConexao();
+        ClienteDAO sql = new ClienteDAO(con);
+        List<Cliente> lista = new ArrayList<>();
+        lista = sql.ListarComboCliente();
+        //jComboBox1.addItem("");
+        
+        for(Cliente f : lista){
+            jComboBox1.addItem(f.getNome());
+        }
+        
+        Conexao.FecharConexao(con);
+    }
+    
+    public void AtualizaTable(){
+        Connection con = Conexao.AbrirConexao();
+        AluguelDAO sql = new AluguelDAO(con);
+        
+        List<Aluguel> lista = new ArrayList<>();
+        lista = sql.Consulta();
+        DefaultTableModel tbm = (DefaultTableModel) jTable2.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for (Aluguel tab : lista) {
+            //Object object = arr[j];
+            tbm.addRow(new String[1]);
+            jTable2.setValueAt(tab.getCod(), i, 0);
+            jTable2.setValueAt(tab.getCod_cliente(), i, 1);
+            jTable2.setValueAt(tab.getCod_dvd(), i, 2);
+            jTable2.setValueAt(tab.getHorario(),i,3);
+            jTable2.setValueAt(tab.getData_aluguel(),i,4);
+            jTable2.setValueAt(tab.getData_devolucao(),i,5);
+            i++; 
+        }
+        Conexao.FecharConexao(con);
     }
 
     /**
@@ -46,6 +98,11 @@ public class ConsultarDevolucao extends javax.swing.JFrame {
                 "Código", "Cliente", "DVD", "Horário", "Locação", "Devolução"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
@@ -53,6 +110,11 @@ public class ConsultarDevolucao extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,6 +145,52 @@ public class ConsultarDevolucao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        String nome = jComboBox1.getSelectedItem().toString();
+        
+        Connection con = Conexao.AbrirConexao();
+        AluguelDAO sql = new AluguelDAO(con);
+        
+        List<Aluguel> lista = new ArrayList<>();
+        lista = sql.ConsultaCliente(nome);
+        
+        DefaultTableModel tbm = (DefaultTableModel) jTable2.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for (Aluguel tab : lista) {
+            //Object object = arr[j];
+            tbm.addRow(new String[1]);
+            jTable2.setValueAt(tab.getCod(), i, 0);
+            jTable2.setValueAt(tab.getCod_cliente(), i, 1);
+            jTable2.setValueAt(tab.getCod_dvd(), i, 2);
+            jTable2.setValueAt(tab.getHorario(),i,3);
+            jTable2.setValueAt(tab.getData_aluguel(),i,4);
+            jTable2.setValueAt(tab.getData_devolucao(),i,5);
+            i++; 
+        }
+        Conexao.FecharConexao(con);
+        
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        int linha = jTable2.getSelectedRow();
+        int idaluguel = (int) jTable2.getValueAt(linha, 0);
+        int idcliente = (int) jTable2.getValueAt(linha, 1);
+        int iddvd = (int) jTable2.getValueAt(linha, 2);
+        
+        Listar a = new Listar();
+        a.setCoddvd(iddvd);
+        a.setCodaluguel(idaluguel);
+        a.setCodcliente(idcliente);
+        
+        new EfetuarDevolucao().setVisible(true);
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments

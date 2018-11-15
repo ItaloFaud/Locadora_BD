@@ -97,7 +97,7 @@ public class FilmeDAO extends ExecuteSQL{
             //Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        return "Filme inexistente!";
     }
     
     public String Alterar(Filme c){
@@ -262,7 +262,7 @@ public class FilmeDAO extends ExecuteSQL{
     
     public List<Filme> ConsultaCodigoFilme(String nome){
         try {
-            String consulta = "select idfilme from filme where titulo = '"+nome+"' ";
+            String consulta = "select idfilme,capa from filme where titulo = '"+nome+"' ";
             List<Filme> lista = new ArrayList<>();
             
             PreparedStatement ps = getCon().prepareStatement(consulta);
@@ -272,6 +272,7 @@ public class FilmeDAO extends ExecuteSQL{
                 while (rs.next()) {                    
                     Filme c = new Filme();
                     c.setCodigo(rs.getInt(1));
+                    c.setCapa(rs.getString(2));
                     lista.add(c);
                     
                 }
@@ -303,7 +304,8 @@ public class FilmeDAO extends ExecuteSQL{
             }     
         } catch (SQLException ex) {
            // Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return ex.getMessage();
+            return "Filme não pode ser excluído! \n"
+                    + "(Há tabelas que usam dados deste Filme)";
         }
        
     }

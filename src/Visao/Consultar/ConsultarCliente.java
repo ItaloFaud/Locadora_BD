@@ -134,6 +134,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
         JtfNome = new javax.swing.JTextField();
         BtnCod = new javax.swing.JButton();
         BtnTodos = new javax.swing.JButton();
+        BtnCancelar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -180,6 +181,14 @@ public class ConsultarCliente extends javax.swing.JFrame {
             }
         });
 
+        BtnCancelar2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnCancelar2.setText("Fechar");
+        BtnCancelar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,13 +210,18 @@ public class ConsultarCliente extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BtnNome)
                         .addGap(46, 46, 46)
-                        .addComponent(BtnTodos)))
+                        .addComponent(BtnTodos))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnCancelar2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(BtnCancelar2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,6 +254,12 @@ public class ConsultarCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         AtualizaTable_Nome(JtfNome.getText());
     }//GEN-LAST:event_BtnNomeActionPerformed
+
+    private void BtnCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelar2ActionPerformed
+        // TODO add your handling code here:
+        // new Menu().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnCancelar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,6 +312,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCancelar2;
     private javax.swing.JButton BtnCod;
     private javax.swing.JButton BtnNome;
     private javax.swing.JButton BtnTodos;

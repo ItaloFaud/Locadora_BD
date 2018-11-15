@@ -86,9 +86,10 @@ public class CategoriaDAO extends ExecuteSQL{
             }
         } catch (SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return "Erro!";
         }
         
-        return null;
+        return "Erro categoria inexistente";
     }
     
     public String Alterar(Categoria c){
@@ -269,8 +270,10 @@ public class CategoriaDAO extends ExecuteSQL{
             }     
         } catch (SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return ex.getMessage();
+            return "Categoria não pode ser removida! \n"
+                    + "(Há tabelas que usam dados desta categoria)" ;//ex.getMessage();
         }
+        
        
     }
     

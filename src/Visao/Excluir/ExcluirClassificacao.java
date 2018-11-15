@@ -213,11 +213,12 @@ public class ExcluirClassificacao extends javax.swing.JFrame {
                 int cod = Integer.parseInt(codd);
                 c.setCodigo(cod);
                 c.setNome(nome);
-                sql.ExcluirClassificacao(c);
+                JOptionPane.showMessageDialog(null,sql.ExcluirClassificacao(c),"Vídeo Locadora",JOptionPane.INFORMATION_MESSAGE);
                 Conexao.FecharConexao(con);
                 jComboBox1.setSelectedIndex(0);
                 JtfNome.setText("");
                 //dispose();
+                
             }
         }
     }//GEN-LAST:event_BtnCadastrarActionPerformed

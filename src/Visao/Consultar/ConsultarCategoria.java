@@ -113,6 +113,7 @@ public class ConsultarCategoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BtnCancelar2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -124,6 +125,14 @@ public class ConsultarCategoria extends javax.swing.JFrame {
         BtnTodos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        BtnCancelar2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnCancelar2.setText("Fechar");
+        BtnCancelar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelar2ActionPerformed(evt);
+            }
+        });
 
         jTable2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -189,13 +198,18 @@ public class ConsultarCategoria extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(JbnNome)
                         .addGap(46, 46, 46)
-                        .addComponent(BtnTodos)))
+                        .addComponent(BtnTodos))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnCancelar2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(BtnCancelar2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -228,6 +242,12 @@ public class ConsultarCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
         AtualizaTable_Nome(JtfNome.getText());
     }//GEN-LAST:event_JbnNomeActionPerformed
+
+    private void BtnCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelar2ActionPerformed
+        // TODO add your handling code here:
+        // new Menu().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnCancelar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,6 +292,9 @@ public class ConsultarCategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnCancelar1;
+    private javax.swing.JButton BtnCancelar2;
     private javax.swing.JButton BtnTodos;
     private javax.swing.JButton JbnCod;
     private javax.swing.JButton JbnNome;

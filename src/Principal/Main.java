@@ -5,6 +5,10 @@
  */
 package Principal;
 
+import Locacao.ConsultarDevolucao;
+import Locacao.ControleLocacao;
+import Visao.Cadastrar.CadastrarDVD;
+
 
 
 

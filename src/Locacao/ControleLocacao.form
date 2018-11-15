@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -86,13 +86,13 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="JtfID1" min="-2" pref="130" max="-2" attributes="0"/>
+                                          <Component id="JtfICliente" min="-2" pref="130" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="383" max="-2" attributes="0"/>
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="JtfNome7" min="-2" pref="87" max="-2" attributes="0"/>
+                                          <Component id="JtfHora" min="-2" pref="87" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -106,43 +106,43 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="JtfID" min="-2" pref="72" max="-2" attributes="0"/>
+                                          <Component id="JtfCod" min="-2" pref="72" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="BtnCadastrar1" min="-2" pref="68" max="-2" attributes="0"/>
+                                          <Component id="BtnCod" min="-2" pref="68" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <Component id="JtfNome6" max="32767" attributes="0"/>
+                                          <Component id="JtfTitulo" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          <Component id="LbCapa" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="JftfData" min="-2" pref="90" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JftfData" min="-2" pref="124" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jDateChooser1" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="JftfData1" min="-2" pref="135" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jComboBox1" min="-2" pref="338" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="JtfNome3" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="JtfCategoria" min="-2" pref="40" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="JtfNome5" min="-2" pref="42" max="-2" attributes="0"/>
+                                          <Component id="JtfClassificacao" min="-2" pref="42" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="JtfNome4" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="JtfValor" min="-2" pref="102" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="359" max="-2" attributes="0"/>
@@ -157,42 +157,40 @@
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JtfID" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BtnCadastrar1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JtfNome7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JtfCod" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnCod" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JtfHora" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <Component id="LbCapa" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JtfNome6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtfTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JtfNome3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtfCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JtfNome4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtfValor" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JtfNome5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtfClassificacao" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JtfID1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtfICliente" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jDateChooser1" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JftfData" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JftfData" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JftfData1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -210,14 +208,17 @@
                     <Property name="text" type="java.lang.String" value="Categoria:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="JtfID">
+                <Component class="javax.swing.JTextField" name="JtfCod">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Copperplate Gothic Light" size="14" style="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtfCodActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="JtfNome3">
+                <Component class="javax.swing.JTextField" name="JtfCategoria">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -233,7 +234,7 @@
                     <Property name="text" type="java.lang.String" value="Codigo de DVD:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel7">
+                <Component class="javax.swing.JLabel" name="LbCapa">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/Imagens/Imagens/DVD_VIDEO_logo.png"/>
@@ -251,6 +252,9 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -263,7 +267,7 @@
                     <Property name="text" type="java.lang.String" value="Valor do Aluguel:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="JtfNome4">
+                <Component class="javax.swing.JTextField" name="JtfValor">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -271,7 +275,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BtnCadastrar1">
+                <Component class="javax.swing.JButton" name="BtnCod">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Copperplate Gothic Light" size="12" style="0"/>
@@ -279,7 +283,7 @@
                     <Property name="text" type="java.lang.String" value="OK"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCadastrar1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCodActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
@@ -290,7 +294,7 @@
                     <Property name="text" type="java.lang.String" value="T&#xed;tulo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="JtfNome6">
+                <Component class="javax.swing.JTextField" name="JtfTitulo">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -320,8 +324,9 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JftfDataActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="JtfNome7">
+                <Component class="javax.swing.JTextField" name="JtfHora">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Copperplate Gothic Light" size="14" style="0"/>
                     </Property>
@@ -334,8 +339,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Horas:"/>
                   </Properties>
-                </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
@@ -353,7 +356,7 @@
                     <Property name="text" type="java.lang.String" value="Classifica&#xe7;&#xe3;o:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="JtfNome5">
+                <Component class="javax.swing.JTextField" name="JtfClassificacao">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -361,8 +364,9 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="JtfID1">
+                <Component class="javax.swing.JTextField" name="JtfICliente">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Copperplate Gothic Light" size="14" style="0"/>
                     </Property>
@@ -375,6 +379,19 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cliente:"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JFormattedTextField" name="JftfData1">
+                  <Properties>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##/##/####" subtype="-1" type="5"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Copperplate Gothic Light" size="14" style="0"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JftfData1ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -394,7 +411,7 @@
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="BtnLimpar" min="-2" pref="111" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="287" max="-2" attributes="0"/>
-                          <Component id="BtnCadastrar2" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="BtnLocar" min="-2" pref="111" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="BtnCancelar" min="-2" pref="111" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -407,7 +424,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="BtnLimpar" alignment="3" pref="36" max="32767" attributes="0"/>
-                              <Component id="BtnCadastrar2" alignment="3" pref="36" max="32767" attributes="0"/>
+                              <Component id="BtnLocar" alignment="3" pref="36" max="32767" attributes="0"/>
                               <Component id="BtnCancelar" alignment="3" pref="36" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -416,15 +433,15 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="BtnCadastrar2">
+                <Component class="javax.swing.JButton" name="BtnLocar">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Copperplate Gothic Light" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Cadastrar"/>
+                    <Property name="text" type="java.lang.String" value="Loca&#xe7;&#xe3;o"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCadastrar2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnLocarActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="BtnLimpar">
@@ -477,9 +494,9 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JtfNome" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="JtfCodd" min="-2" pref="53" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnCodd" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -487,17 +504,17 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="JtfNome2" min="-2" pref="92" max="-2" attributes="0"/>
+                              <Component id="JtfCodCliente" min="-2" pref="92" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnCodCliente" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="JtfNome1" min="-2" pref="92" max="-2" attributes="0"/>
+                              <Component id="JtfCodDVD" min="-2" pref="92" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnCodDVD" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="BtnCadastrar" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnTodos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -512,15 +529,15 @@
                               <EmptySpace pref="19" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="BtnCadastrar" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="BtnTodos" min="-2" pref="23" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jButton1" min="-2" pref="23" max="-2" attributes="0"/>
+                                          <Component id="BtnCodDVD" min="-2" pref="23" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="JtfNome1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="JtfCodDVD" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -529,9 +546,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JtfNome2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtfCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jButton3" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="BtnCodCliente" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                           </Group>
@@ -540,9 +557,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JtfNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="JtfCodd" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jButton2" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="BtnCodd" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -559,7 +576,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Copperplate Gothic Light" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pesquisar por DVD:"/>
+                <Property name="text" type="java.lang.String" value="Pesquisar por C&#xf3;d. DVD:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
@@ -570,19 +587,25 @@
                 <Property name="text" type="java.lang.String" value="Pesquisa por c&#xf3;digo:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="BtnCodDVD">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagens/Imagens/lupa1.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCodDVDActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="JtfNome1">
+            <Component class="javax.swing.JTextField" name="JtfCodDVD">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Copperplate Gothic Light" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtfCodDVDActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
               <AuxValues>
@@ -610,14 +633,17 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="BtnCodd">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagens/Imagens/lupa1.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCoddActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="BtnCadastrar">
+            <Component class="javax.swing.JButton" name="BtnTodos">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Copperplate Gothic Light" size="12" style="0"/>
@@ -625,37 +651,46 @@
                 <Property name="text" type="java.lang.String" value="TODOS"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCadastrarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnTodosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="JtfNome">
+            <Component class="javax.swing.JTextField" name="JtfCodd">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Copperplate Gothic Light" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtfCoddActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Copperplate Gothic Light" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pesquisar por cliente:"/>
+                <Property name="text" type="java.lang.String" value="Pesquisar por C&#xf3;d cliente:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="JtfNome2">
+            <Component class="javax.swing.JTextField" name="JtfCodCliente">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Copperplate Gothic Light" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JtfCodClienteActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="BtnCodCliente">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Imagens/Imagens/lupa1.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCodClienteActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

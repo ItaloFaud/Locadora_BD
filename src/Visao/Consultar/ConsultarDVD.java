@@ -129,6 +129,7 @@ public class ConsultarDVD extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         JftfData11 = new javax.swing.JFormattedTextField();
         BtnTodos = new javax.swing.JButton();
+        BtnCancelar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -180,6 +181,14 @@ public class ConsultarDVD extends javax.swing.JFrame {
             }
         });
 
+        BtnCancelar2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnCancelar2.setText("Fechar");
+        BtnCancelar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,6 +196,7 @@ public class ConsultarDVD extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -200,14 +210,17 @@ public class ConsultarDVD extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BtnData, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
-                        .addComponent(BtnTodos)
-                        .addContainerGap(15, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BtnTodos)
+                            .addComponent(BtnCancelar2))
+                        .addContainerGap(15, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BtnCancelar2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,6 +253,12 @@ public class ConsultarDVD extends javax.swing.JFrame {
         // TODO add your handling code here:
         AtualizaTable_Data(JftfData11.getText());
     }//GEN-LAST:event_BtnDataActionPerformed
+
+    private void BtnCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelar2ActionPerformed
+        // TODO add your handling code here:
+        // new Menu().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnCancelar2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,15 +311,11 @@ public class ConsultarDVD extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCancelar2;
     private javax.swing.JButton BtnCod;
     private javax.swing.JButton BtnData;
     private javax.swing.JButton BtnTodos;
-    private javax.swing.JFormattedTextField JftfData;
-    private javax.swing.JFormattedTextField JftfData1;
     private javax.swing.JFormattedTextField JftfData11;
-    private javax.swing.JFormattedTextField JftfData2;
-    private javax.swing.JFormattedTextField JftfData3;
-    private javax.swing.JFormattedTextField JftfData4;
     private javax.swing.JTextField JtfCod;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

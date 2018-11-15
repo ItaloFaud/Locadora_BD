@@ -6,7 +6,10 @@
 package Principal;
 
 import Locacao.ConsultarDevolucao;
+import Locacao.ControleLocacao;
+import Locacao.EfetuarDevolucao;
 import Visao.Alterar.AlterarCategoria;
+import Visao.Alterar.AlterarClassificacao;
 import Visao.Alterar.AlterarCliente;
 import Visao.Alterar.AlterarDVD;
 import Visao.Alterar.AlterarFilme;
@@ -57,8 +60,8 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BtnLocacao = new javax.swing.JButton();
+        BtnDevolucao = new javax.swing.JButton();
         BtnSair = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -74,7 +77,6 @@ public class Menu extends javax.swing.JFrame {
         Filme = new javax.swing.JMenuItem();
         Funcionario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        Aluguel1 = new javax.swing.JMenuItem();
         Categoria1 = new javax.swing.JMenuItem();
         Classificacao1 = new javax.swing.JMenuItem();
         Cliente1 = new javax.swing.JMenuItem();
@@ -102,14 +104,24 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/dvd-mount2.png"))); // NOI18N
-        jButton1.setText("Locação");
-        jButton1.setPreferredSize(new java.awt.Dimension(153, 49));
+        BtnLocacao.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        BtnLocacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/dvd-mount2.png"))); // NOI18N
+        BtnLocacao.setText("Locação");
+        BtnLocacao.setPreferredSize(new java.awt.Dimension(153, 49));
+        BtnLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnLocacaoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD3.png"))); // NOI18N
-        jButton2.setText("Devolução");
+        BtnDevolucao.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        BtnDevolucao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD3.png"))); // NOI18N
+        BtnDevolucao.setText("Devolução");
+        BtnDevolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDevolucaoActionPerformed(evt);
+            }
+        });
 
         BtnSair.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         BtnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/sair1.png"))); // NOI18N
@@ -220,14 +232,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Consultar");
-
-        Aluguel1.setText("Aluguel");
-        Aluguel1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Aluguel1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(Aluguel1);
 
         Categoria1.setText("Categoria");
         Categoria1.addActionListener(new java.awt.event.ActionListener() {
@@ -391,9 +395,9 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(191, 191, 191)
-                .addComponent(jButton2)
+                .addComponent(BtnDevolucao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(115, 115, 115))
@@ -404,8 +408,8 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -511,7 +515,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void Classificacao3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Classificacao3ActionPerformed
         // TODO add your handling code here:
-        new AlterarCategoria().setVisible(true);
+        new AlterarClassificacao().setVisible(true);
     }//GEN-LAST:event_Classificacao3ActionPerformed
 
     private void Cliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cliente3ActionPerformed
@@ -536,13 +540,20 @@ public class Menu extends javax.swing.JFrame {
 
     private void BtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSairActionPerformed
         // TODO add your handling code here:
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        dispose();
+       // setDefaultCloseOperation(EXIT_ON_CLOSE);
     }//GEN-LAST:event_BtnSairActionPerformed
 
-    private void Aluguel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aluguel1ActionPerformed
+    private void BtnLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLocacaoActionPerformed
+        // TODO add your handling code here:
+        new ControleLocacao().setVisible(true);
+        
+    }//GEN-LAST:event_BtnLocacaoActionPerformed
+
+    private void BtnDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDevolucaoActionPerformed
         // TODO add your handling code here:
         new ConsultarDevolucao().setVisible(true);
-    }//GEN-LAST:event_Aluguel1ActionPerformed
+    }//GEN-LAST:event_BtnDevolucaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -580,7 +591,8 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Aluguel1;
+    private javax.swing.JButton BtnDevolucao;
+    private javax.swing.JButton BtnLocacao;
     private javax.swing.JButton BtnSair;
     private javax.swing.JMenuItem Categoria;
     private javax.swing.JMenuItem Categoria1;
@@ -606,8 +618,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem Funcionario1;
     private javax.swing.JMenuItem Funcionario2;
     private javax.swing.JMenuItem Funcionario3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

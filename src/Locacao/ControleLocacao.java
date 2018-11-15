@@ -5,8 +5,25 @@
  */
 package Locacao;
 
+import DAO.AluguelDAO;
+import DAO.ClienteDAO;
+import DAO.Conexao;
+import DAO.DVDDAO;
+import Modelo.Aluguel;
+import Modelo.Cliente;
+import Modelo.DVD;
+import Modelo.Filme;
 import Principal.Menu;
 import Visao.Consultar.*;
+import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +39,98 @@ public class ControleLocacao extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(this);
         setTitle("Vídeo Locadora");
+        Hora();
+        AtualizaCombo();
+        AtualizaTable();
+        
+    }
+    
+    public void AtualizaTable(){
+        Connection con = Conexao.AbrirConexao();
+        AluguelDAO sql = new AluguelDAO(con);
+        
+        List<Aluguel> lista = new ArrayList<>();
+        lista = sql.Consulta();
+        DefaultTableModel tbm = (DefaultTableModel) jTable2.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for (Aluguel tab : lista) {
+            //Object object = arr[j];
+            tbm.addRow(new String[1]);
+            jTable2.setValueAt(tab.getCod(), i, 0);
+            jTable2.setValueAt(tab.getCod_dvd(), i, 1);
+            jTable2.setValueAt(tab.getCod_cliente(), i, 2);
+            jTable2.setValueAt(tab.getHorario(),i,3);
+            jTable2.setValueAt(tab.getData_aluguel(),i,4);
+            jTable2.setValueAt(tab.getData_devolucao(),i,5);
+            i++; 
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    public void AtualizaTableTipada(String tipo, int id){
+        Connection con = Conexao.AbrirConexao();
+        AluguelDAO sql = new AluguelDAO(con);
+        
+        List<Aluguel> lista = new ArrayList<>();
+        lista = sql.ConsultaTipada(tipo,id);
+        DefaultTableModel tbm = (DefaultTableModel) jTable2.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for (Aluguel tab : lista) {
+            //Object object = arr[j];
+            tbm.addRow(new String[1]);
+            jTable2.setValueAt(tab.getCod(), i, 0);
+            jTable2.setValueAt(tab.getCod_dvd(), i, 1);
+            jTable2.setValueAt(tab.getCod_cliente(), i, 2);
+            jTable2.setValueAt(tab.getHorario(),i,3);
+            jTable2.setValueAt(tab.getData_aluguel(),i,4);
+            jTable2.setValueAt(tab.getData_devolucao(),i,5);
+            i++; 
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    public void Hora(){
+        Date d = new Date();
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm");
+        JftfData.setText(data.format(d));
+        JftfData1.setText(data.format(d));
+        JtfHora.setText(hora.format(d));
+        
+        
+    }
+    
+    private void AtualizaCombo(){
+        Connection con = Conexao.AbrirConexao();
+        ClienteDAO sql = new ClienteDAO(con);
+        List<Cliente> lista = new ArrayList<>();
+        lista = sql.ListarComboCliente();
+        //jComboBox1.addItem("");
+        
+        for(Cliente f : lista){
+            jComboBox1.addItem(f.getNome());
+        }
+        
+        Conexao.FecharConexao(con);
+    }
+    
+    public void Limpar(){
+        JtfCod.setText("");
+        JtfCodd.setText("");
+        JtfTitulo.setText("");
+        JtfCategoria.setText("");
+        JtfClassificacao.setText("");
+        JtfValor.setText("");
+        JtfICliente.setText("");
+        jComboBox1.setSelectedIndex(0);
+        LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Imagens/Imagens/DVD_VIDEO_logo.png"));
+        
     }
 
     /**
@@ -37,43 +146,43 @@ public class ControleLocacao extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        JtfID = new javax.swing.JTextField();
-        JtfNome3 = new javax.swing.JTextField();
+        JtfCod = new javax.swing.JTextField();
+        JtfCategoria = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        LbCapa = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        JtfNome4 = new javax.swing.JTextField();
-        BtnCadastrar1 = new javax.swing.JButton();
+        JtfValor = new javax.swing.JTextField();
+        BtnCod = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        JtfNome6 = new javax.swing.JTextField();
+        JtfTitulo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         JftfData = new javax.swing.JFormattedTextField();
-        JtfNome7 = new javax.swing.JTextField();
+        JtfHora = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel14 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        JtfNome5 = new javax.swing.JTextField();
-        JtfID1 = new javax.swing.JTextField();
+        JtfClassificacao = new javax.swing.JTextField();
+        JtfICliente = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        JftfData1 = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
-        BtnCadastrar2 = new javax.swing.JButton();
+        BtnLocar = new javax.swing.JButton();
         BtnLimpar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        JtfNome1 = new javax.swing.JTextField();
+        BtnCodDVD = new javax.swing.JButton();
+        JtfCodDVD = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        BtnCadastrar = new javax.swing.JButton();
-        JtfNome = new javax.swing.JTextField();
+        BtnCodd = new javax.swing.JButton();
+        BtnTodos = new javax.swing.JButton();
+        JtfCodd = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        JtfNome2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        JtfCodCliente = new javax.swing.JTextField();
+        BtnCodCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,38 +191,48 @@ public class ControleLocacao extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel5.setText("Categoria:");
 
-        JtfID.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCod.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtfCodActionPerformed(evt);
+            }
+        });
 
-        JtfNome3.setEditable(false);
-        JtfNome3.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCategoria.setEditable(false);
+        JtfCategoria.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel6.setText("Codigo de DVD:");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD_VIDEO_logo.png"))); // NOI18N
+        LbCapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/DVD_VIDEO_logo.png"))); // NOI18N
 
         jComboBox1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel8.setText("Valor do Aluguel:");
 
-        JtfNome4.setEditable(false);
-        JtfNome4.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfValor.setEditable(false);
+        JtfValor.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
-        BtnCadastrar1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar1.setText("OK");
-        BtnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
+        BtnCod.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnCod.setText("OK");
+        BtnCod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrar1ActionPerformed(evt);
+                BtnCodActionPerformed(evt);
             }
         });
 
         jLabel11.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel11.setText("Título:");
 
-        JtfNome6.setEditable(false);
-        JtfNome6.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfTitulo.setEditable(false);
+        JtfTitulo.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel12.setText("Data da Locação");
@@ -131,7 +250,8 @@ public class ControleLocacao extends javax.swing.JFrame {
             }
         });
 
-        JtfNome7.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfHora.setEditable(false);
+        JtfHora.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel9.setText("Horas:");
@@ -142,13 +262,26 @@ public class ControleLocacao extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel10.setText("Classificação:");
 
-        JtfNome5.setEditable(false);
-        JtfNome5.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfClassificacao.setEditable(false);
+        JtfClassificacao.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
-        JtfID1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfICliente.setEditable(false);
+        JtfICliente.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel13.setText("Cliente:");
+
+        try {
+            JftfData1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        JftfData1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JftfData1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JftfData1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -163,12 +296,12 @@ public class ControleLocacao extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addGap(18, 18, 18)
-                                .addComponent(JtfID1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(JtfICliente, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(383, 383, 383)
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(JtfNome7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(JtfHora, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -178,38 +311,38 @@ public class ControleLocacao extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(JtfID, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(BtnCadastrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnCod, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(JtfNome6)
+                                .addComponent(JtfTitulo)
                                 .addGap(41, 41, 41)
-                                .addComponent(jLabel7)
+                                .addComponent(LbCapa)
                                 .addGap(48, 48, 48))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel14)
+                                .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(JftfData1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtfNome3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtfNome5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JtfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(JtfNome4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(JtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(359, 359, 359))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -218,47 +351,46 @@ public class ControleLocacao extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(JtfID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnCadastrar1)
-                    .addComponent(JtfNome7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JtfCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCod)
+                    .addComponent(JtfHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
+                    .addComponent(LbCapa)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(JtfNome6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(JtfNome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtfCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(JtfNome4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
-                            .addComponent(JtfNome5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JtfClassificacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JtfID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JtfICliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel12)
-                                .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel14)))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(JftfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addComponent(JftfData1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        BtnCadastrar2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar2.setText("Cadastrar");
-        BtnCadastrar2.addActionListener(new java.awt.event.ActionListener() {
+        BtnLocar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnLocar.setText("Locação");
+        BtnLocar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrar2ActionPerformed(evt);
+                BtnLocarActionPerformed(evt);
             }
         });
 
@@ -286,7 +418,7 @@ public class ControleLocacao extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(BtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(287, 287, 287)
-                .addComponent(BtnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnLocar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
@@ -297,7 +429,7 @@ public class ControleLocacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(BtnCadastrar2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(BtnLocar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(BtnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -321,14 +453,24 @@ public class ControleLocacao extends javax.swing.JFrame {
         jTabbedPane1.addTab("CADASTRAR", jPanel1);
 
         jLabel3.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jLabel3.setText("Pesquisar por DVD:");
+        jLabel3.setText("Pesquisar por Cód. DVD:");
 
         jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jLabel2.setText("Pesquisa por código:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
+        BtnCodDVD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
+        BtnCodDVD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCodDVDActionPerformed(evt);
+            }
+        });
 
-        JtfNome1.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCodDVD.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCodDVD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtfCodDVDActionPerformed(evt);
+            }
+        });
 
         jTable2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -341,24 +483,44 @@ public class ControleLocacao extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
-
-        BtnCadastrar.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
-        BtnCadastrar.setText("TODOS");
-        BtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        BtnCodd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
+        BtnCodd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCadastrarActionPerformed(evt);
+                BtnCoddActionPerformed(evt);
             }
         });
 
-        JtfNome.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        BtnTodos.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
+        BtnTodos.setText("TODOS");
+        BtnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTodosActionPerformed(evt);
+            }
+        });
+
+        JtfCodd.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCodd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtfCoddActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
-        jLabel4.setText("Pesquisar por cliente:");
+        jLabel4.setText("Pesquisar por Cód cliente:");
 
-        JtfNome2.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCodCliente.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 14)); // NOI18N
+        JtfCodCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JtfCodClienteActionPerformed(evt);
+            }
+        });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
+        BtnCodCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Imagens/lupa1.png"))); // NOI18N
+        BtnCodCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCodClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -375,24 +537,24 @@ public class ControleLocacao extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JtfCodd, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(BtnCodd)
                         .addGap(71, 71, 71)
                         .addComponent(jLabel4)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(JtfNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JtfCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(BtnCodCliente)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(JtfCodDVD, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(BtnCodDVD)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnCadastrar)
+                        .addComponent(BtnTodos)
                         .addGap(23, 23, 23))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -403,28 +565,28 @@ public class ControleLocacao extends javax.swing.JFrame {
                         .addContainerGap(19, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(BtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnTodos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BtnCodDVD, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3)
-                                        .addComponent(JtfNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(JtfCodDVD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel4)
-                                .addComponent(JtfNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(JtfCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BtnCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
-                                .addComponent(JtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(JtfCodd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(BtnCodd, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -446,34 +608,134 @@ public class ControleLocacao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrarActionPerformed
+    private void BtnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTodosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrarActionPerformed
+        AtualizaTable();
+    }//GEN-LAST:event_BtnTodosActionPerformed
 
-    private void BtnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrar1ActionPerformed
+    private void BtnCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCodActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrar1ActionPerformed
+        Connection con = Conexao.AbrirConexao();
+        AluguelDAO sql = new AluguelDAO(con);
+        
+        Filme f = new Filme();
+        DVD d = new DVD();
+        d.setCodigo(Integer.parseInt(JtfCod.getText()));
+        
+        JOptionPane.showMessageDialog(null, sql.Conferir(d, f),"Vídeo Locadora",JOptionPane.INFORMATION_MESSAGE);
+        JtfTitulo.setText(f.getTitulo());
+        JtfCategoria.setText(f.getCod_categoria()+"");
+        JtfClassificacao.setText(f.getCod_classificacao()+"");
+        JtfValor.setText(d.getPreco());
+        LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+f.getCapa()));
+        
+        Conexao.FecharConexao(con);
+        
+    }//GEN-LAST:event_BtnCodActionPerformed
 
     private void JftfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JftfDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JftfDataActionPerformed
 
-    private void BtnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCadastrar2ActionPerformed
+    private void BtnLocarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLocarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCadastrar2ActionPerformed
+        if(JtfCategoria.getText().equalsIgnoreCase("") || JtfClassificacao.getText().equalsIgnoreCase("")
+                || JtfTitulo.getText().equalsIgnoreCase("") || JtfCod.getText().equalsIgnoreCase("") || 
+                JftfData1.getText().equalsIgnoreCase("") || JtfValor.getText().equalsIgnoreCase("")){
+                 JOptionPane.showMessageDialog(null, "Campos vazios!","Vídeo Locadora",JOptionPane.INFORMATION_MESSAGE);
+        }else{
+           Connection con = Conexao.AbrirConexao();
+           AluguelDAO sql = new AluguelDAO(con);
+           JOptionPane.showMessageDialog(null,  sql.Cadastrar(JtfHora.getText(), JftfData.getText(), JftfData1.getText(),
+                   Integer.parseInt(JtfICliente.getText()),Integer.parseInt(JtfCod.getText())),
+                   "Vídeo Locadora",JOptionPane.INFORMATION_MESSAGE);
+           Limpar();
+        }
+    }//GEN-LAST:event_BtnLocarActionPerformed
 
     private void BtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLimparActionPerformed
         // TODO add your handling code here:
+        Limpar();
 
-        JtfID.setText("");
-        JtfNome.setText("");
     }//GEN-LAST:event_BtnLimparActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
         // TODO add your handling code here:
-        new Menu().setVisible(true);
+      //  new Menu().setVisible(true);
         dispose();
     }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void JftfData1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JftfData1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JftfData1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+                Connection con = Conexao.AbrirConexao();
+        ClienteDAO sql = new ClienteDAO(con);
+        
+        List<Cliente> lista = new ArrayList<>();
+        String nome = jComboBox1.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoCliente(nome);
+        
+        for(Cliente f : lista){
+            int cod = f.getCodigo();
+            JtfICliente.setText(""+cod);
+        }
+        
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void JtfCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfCodActionPerformed
+        // TODO add your handling code here:
+          Connection con = Conexao.AbrirConexao();
+        AluguelDAO sql = new AluguelDAO(con);
+        
+        Filme f = new Filme();
+        DVD d = new DVD();
+        d.setCodigo(Integer.parseInt(JtfCod.getText()));
+        
+        JOptionPane.showMessageDialog(null, sql.Conferir(d, f),"Vídeo Locadora",JOptionPane.INFORMATION_MESSAGE);
+        JtfTitulo.setText(f.getTitulo());
+        JtfCategoria.setText(f.getCod_categoria()+"");
+        JtfClassificacao.setText(f.getCod_classificacao()+"");
+        JtfValor.setText(d.getPreco());
+        LbCapa.setIcon(new ImageIcon("/C:/Users/Hoope/Documents/Aulas/NetBeans/Locadora_BD/src/Capas/"+f.getCapa()));
+        
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_JtfCodActionPerformed
+
+    private void JtfCoddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfCoddActionPerformed
+        // TODO add your handling code here:
+        AtualizaTableTipada("aluguel", Integer.parseInt(JtfCodd.getText()));
+    }//GEN-LAST:event_JtfCoddActionPerformed
+
+    private void BtnCoddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCoddActionPerformed
+        // TODO add your handling code here:
+        AtualizaTableTipada("aluguel", Integer.parseInt(JtfCodd.getText()));
+    }//GEN-LAST:event_BtnCoddActionPerformed
+
+    private void JtfCodDVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfCodDVDActionPerformed
+        // TODO add your handling code here:
+        AtualizaTableTipada("dvd", Integer.parseInt(JtfCodDVD.getText()));
+    }//GEN-LAST:event_JtfCodDVDActionPerformed
+
+    private void BtnCodDVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCodDVDActionPerformed
+        // TODO add your handling code here:
+         AtualizaTableTipada("dvd", Integer.parseInt(JtfCodDVD.getText()));
+    }//GEN-LAST:event_BtnCodDVDActionPerformed
+
+    private void JtfCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JtfCodClienteActionPerformed
+        // TODO add your handling code here:
+         AtualizaTableTipada("cliente", Integer.parseInt(JtfCodCliente.getText()));
+    }//GEN-LAST:event_JtfCodClienteActionPerformed
+
+    private void BtnCodClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCodClienteActionPerformed
+        // TODO add your handling code here:
+         AtualizaTableTipada("cliente", Integer.parseInt(JtfCodCliente.getText()));
+    }//GEN-LAST:event_BtnCodClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -574,27 +836,28 @@ public class ControleLocacao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCadastrar;
-    private javax.swing.JButton BtnCadastrar1;
-    private javax.swing.JButton BtnCadastrar2;
     private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnCod;
+    private javax.swing.JButton BtnCodCliente;
+    private javax.swing.JButton BtnCodDVD;
+    private javax.swing.JButton BtnCodd;
     private javax.swing.JButton BtnLimpar;
+    private javax.swing.JButton BtnLocar;
+    private javax.swing.JButton BtnTodos;
     private javax.swing.JFormattedTextField JftfData;
-    private javax.swing.JTextField JtfID;
-    private javax.swing.JTextField JtfID1;
-    private javax.swing.JTextField JtfNome;
-    private javax.swing.JTextField JtfNome1;
-    private javax.swing.JTextField JtfNome2;
-    private javax.swing.JTextField JtfNome3;
-    private javax.swing.JTextField JtfNome4;
-    private javax.swing.JTextField JtfNome5;
-    private javax.swing.JTextField JtfNome6;
-    private javax.swing.JTextField JtfNome7;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JFormattedTextField JftfData1;
+    private javax.swing.JTextField JtfCategoria;
+    private javax.swing.JTextField JtfClassificacao;
+    private javax.swing.JTextField JtfCod;
+    private javax.swing.JTextField JtfCodCliente;
+    private javax.swing.JTextField JtfCodDVD;
+    private javax.swing.JTextField JtfCodd;
+    private javax.swing.JTextField JtfHora;
+    private javax.swing.JTextField JtfICliente;
+    private javax.swing.JTextField JtfTitulo;
+    private javax.swing.JTextField JtfValor;
+    private javax.swing.JLabel LbCapa;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -605,7 +868,6 @@ public class ControleLocacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

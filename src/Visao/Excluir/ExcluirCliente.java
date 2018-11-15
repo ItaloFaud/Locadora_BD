@@ -213,7 +213,7 @@ public class ExcluirCliente extends javax.swing.JFrame {
                 int cod = Integer.parseInt(codd);
                 c.setCodigo(cod);
                 c.setNome(nome);
-                sql.ExcluirCliente(c);
+                JOptionPane.showMessageDialog(null,sql.ExcluirCliente(c),"Vídeo Locadora",JOptionPane.INFORMATION_MESSAGE);
                 Conexao.FecharConexao(con);
                 jComboBox1.setSelectedIndex(0);
                 JtfNome.setText("");

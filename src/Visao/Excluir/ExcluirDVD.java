@@ -212,7 +212,8 @@ public class ExcluirDVD extends javax.swing.JFrame {
             if (confirm == 0){
                 int cod = Integer.parseInt(codd);
                 c.setCodigo(cod);
-                sql.ExcluirDVD(c);
+                JOptionPane.showMessageDialog(null,sql.ExcluirDVD(c),"Vídeo Locadora",JOptionPane.INFORMATION_MESSAGE);
+                
                 Conexao.FecharConexao(con);
                 jComboBox1.setSelectedIndex(0);
                 JtfCod.setText("");

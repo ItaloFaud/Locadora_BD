@@ -292,7 +292,8 @@ public class DVDDAO extends ExecuteSQL{
             }     
         } catch (SQLException ex) {
            // Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return ex.getMessage();
+            return "DVD não pode ser excluído! \n"
+                    + "(Há tabelas que usam dados deste DVD)";
         }
        
     }

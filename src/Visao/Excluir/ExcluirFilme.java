@@ -221,7 +221,7 @@ public class ExcluirFilme extends javax.swing.JFrame {
                 int cod = Integer.parseInt(codd);
                 c.setCodigo(cod);
                 c.setTitulo(nome);
-                JOptionPane.showMessageDialog(null,sql.ExcluirFilme(c), "Vídeo Locadora", JOptionPane.ERROR_MESSAGE) ;
+                JOptionPane.showMessageDialog(null,sql.ExcluirFilme(c), "Vídeo Locadora", JOptionPane.INFORMATION_MESSAGE) ;
                 Conexao.FecharConexao(con);
                 jComboBox1.setSelectedIndex(0);
                 JtfCod.setText("");

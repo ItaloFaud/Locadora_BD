@@ -216,7 +216,8 @@ public class ExcluirFuncionario extends javax.swing.JFrame {
                 int cod = Integer.parseInt(codd);
                 f.setCod(cod);
                 f.setNome(nome);
-                sql.ExcluirFuncionario(f);
+                JOptionPane.showMessageDialog(null,sql.ExcluirFuncionario(f),"Vídeo Locadora",JOptionPane.INFORMATION_MESSAGE);
+                
                 Conexao.FecharConexao(con);
                 //dispose();
                 jComboBox1.setSelectedIndex(0);

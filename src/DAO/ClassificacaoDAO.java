@@ -90,7 +90,7 @@ public class ClassificacaoDAO extends ExecuteSQL{
             //Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        return "Erro! Classificação inexistente";
     }
     
     public String Alterar(Classificacao c){
@@ -276,7 +276,8 @@ public class ClassificacaoDAO extends ExecuteSQL{
             }     
         } catch (SQLException ex) {
            // Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return ex.getMessage();
+            return "Classificação não pode ser excluída! \n"
+                    + "(Há tabelas que usam dados desta classificação)";
         }
        
     }

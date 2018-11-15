@@ -114,7 +114,7 @@ public class FuncionarioDAO extends ExecuteSQL{
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return null;
+        return "Funcionário inexixtente!";
     }
     
     public String Alterar(Funcionario f){
@@ -299,7 +299,8 @@ public class FuncionarioDAO extends ExecuteSQL{
             }     
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return ex.getMessage();
+            return "Erro ao excluir funcionário! \n"
+                    + "(Há tabelas que usam dados deste funcionário)";
         }
        
     }

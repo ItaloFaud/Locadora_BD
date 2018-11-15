@@ -70,6 +70,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        JpfSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JpfSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,6 +176,44 @@ public class Login extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JpfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JpfSenhaActionPerformed
+        // TODO add your handling code here:
+         Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO sql = new FuncionarioDAO(con);
+        String login = JtfUser.getText();
+        String senha = JpfSenha.getText();
+        
+        if(login.equalsIgnoreCase("") || senha.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Nenhum campo pode estar vazio","Vídeo Locadora",
+                    JOptionPane.WARNING_MESSAGE);
+            JtfUser.setText("");
+            JtfUser.setText("");
+        }else{
+            if(sql.Logar(login, senha) == true){
+                new Thread(){
+                    public void run(){
+                        for (int i = 0; i < 101; i++) {
+                            jProgressBar1.setValue(i);
+                            try{
+                                Thread.sleep(15);
+                            }catch (Exception ex){
+                                ex.getMessage();
+                            }
+                        }
+                       new Menu().setVisible(true);
+                       dispose();
+                    }
+                }.start();
+            }else{
+              JOptionPane.showMessageDialog(null,"Usuário e/ou Senha incorretos","Vídeo Locadora",
+                    JOptionPane.ERROR_MESSAGE);
+              JtfUser.setText("");
+              JpfSenha.setText("");
+            }
+        }
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_JpfSenhaActionPerformed
 
     /**
      * @param args the command line arguments
